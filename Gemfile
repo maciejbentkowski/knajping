@@ -48,10 +48,12 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
 
+group :test do
+  gem "shoulda-matchers", "~> 6.0"
+end
 
 gem "importmap-rails", "~> 2.1"
 
