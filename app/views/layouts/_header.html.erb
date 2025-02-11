@@ -1,44 +1,42 @@
 <header>
   <div class="bg-gray-100 px-4 py-2">
     <div class="flex justify-between items-center">
-      <!-- Navbar Start -->
-      <div class="flex items-center">
-        <div class="flex md:hidden">
-          <div class="relative">
-            <button class="p-2 hover:bg-gray-200 rounded-lg focus:outline-none lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-            </button>
-            <ul class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
-              <% if true %>
-                <li class="hover:bg-gray-100 rounded-lg">
-                  <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
-                </li>
-              <% else %>
-                <li class="hover:bg-gray-100 rounded-lg">
-                  <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
-                </li>
-                <li class="hover:bg-gray-100 rounded-lg">
-                  <span class="block px-4 py-2">Logowanie:</span>
-                  <ul class="ml-4">
-                    <li class="hover:bg-gray-100 rounded-lg">
-                      <%=link_to "Zaloguj się", new_user_session_path, class: "block px-4 py-2"%>
-                    </li>
-                    <li class="hover:bg-gray-100 rounded-lg">
-                      <%=link_to "Zarejestruj się", new_user_registration_path, class: "block px-4 py-2"%>
-                    </li>
-                  </ul>
-                </li>
-              <% end %>
+      <div class="flex md:hidden">
+        <div data-controller="dropdown">
+          <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-lg focus:outline-none lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </button>
+          <% if false %>
+            <ul data-dropdown-target="menu" class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+              <li class="hover:bg-gray-100 rounded-lg">
+                <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
+              </li>
             </ul>
-          </div>
-        </div>
-        <div class="hidden md:flex">
-          <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
+          <% else %>
+            <ul data-dropdown-target="menu" class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+              <li class="hover:bg-gray-100 rounded-lg">
+                <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
+              </li>
+              <li class="hover:bg-gray-100 rounded-lg">
+                <span class="block px-4 py-2">Logowanie:</span>
+                <ul class="ml-4">
+                  <li class="hover:bg-gray-100 rounded-lg">
+                    Zaloguj sie
+                  </li>
+                  <li class="hover:bg-gray-100 rounded-lg">
+                    Zarejestruj sie
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          <% end %>
         </div>
       </div>
-      <!-- Navbar Center -->
+      <div class="hidden md:flex">
+        <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
+      </div>
       <div class="flex items-center">
         <div class="hidden md:flex">
           <ul class="flex space-x-4">
@@ -49,41 +47,29 @@
           <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
         </div>
       </div>
-      <!-- Navbar End -->
       <% if true %>
         <div class="flex items-center">
           <div class="hidden md:block pr-10 text-gray-800">
-            Cześć, current_user_username
+            Cześć, current user
           </div>
-          <div class="relative">
-            <button class="p-2 hover:bg-gray-200 rounded-full">
+          <div data-controller="dropdown">
+            <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-full">
               <div class="w-10 h-10 rounded-full overflow-hidden">
                 avatar
               </div>
             </button>
-            <ul class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+            <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
               <li class="hover:bg-gray-100 rounded-lg">
                 Profil
               </li>
               <li class="hover:bg-gray-100 rounded-lg">
-                Stwórz Lokal
+                Stworz lokal
               </li>
               <li class="hover:bg-gray-100 rounded-lg">
-                Wyloguj się
+                Wyloguj sie
               </li>
             </ul>
           </div>
-        </div>
-      <% else %>
-        <div class="hidden md:flex">
-          <ul class="flex space-x-4">
-            <li>
-              Zaloguj się
-            </li>
-            <li>
-              Zarejestruj się
-            </li>
-          </ul>
         </div>
       <% end %>
     </div>
