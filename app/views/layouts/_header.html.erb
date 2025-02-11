@@ -8,7 +8,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
           </button>
-          <% if false %>
+          <% if user_signed_in? %>
             <ul data-dropdown-target="menu" class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
               <li class="hover:bg-gray-100 rounded-lg">
                 <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
@@ -21,12 +21,12 @@
               </li>
               <li class="hover:bg-gray-100 rounded-lg">
                 <span class="block px-4 py-2">Logowanie:</span>
-                <ul class="ml-4">
+                <ul class="ml-8">
                   <li class="hover:bg-gray-100 rounded-lg">
-                    Zaloguj sie
+                    <%=link_to "Zaloguj się", new_user_session_path%>
                   </li>
                   <li class="hover:bg-gray-100 rounded-lg">
-                    Zarejestruj sie
+                    <%=link_to "Zarejestruj się", new_user_registration_path%>
                   </li>
                 </ul>
               </li>
@@ -37,8 +37,8 @@
       <div class="hidden md:flex">
         <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
       </div>
-      <div class="flex items-center">
-        <div class="hidden md:flex">
+      <div class="flex ">
+        <div class="hidden md:flex ">
           <ul class="flex space-x-4">
             <li><%=link_to "Lokale", venues_path, class: "px-4 py-2 hover:bg-gray-200 rounded-lg" %></li>
           </ul>
@@ -47,10 +47,10 @@
           <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
         </div>
       </div>
-      <% if true %>
+      <% if user_signed_in? %>
         <div class="flex items-center">
           <div class="hidden md:block pr-10 text-gray-800">
-            Cześć, current user
+            Cześć, <%= current_user.username %>
           </div>
           <div data-controller="dropdown">
             <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-full">
@@ -66,10 +66,17 @@
                 Stworz lokal
               </li>
               <li class="hover:bg-gray-100 rounded-lg">
-                Wyloguj sie
+                <%=button_to "Wyloguj się", destroy_user_session_path, method: :delete %>
               </li>
             </ul>
           </div>
+        </div>
+      <% else %>
+        <div class="hidden md:flex ">
+          <ul class="flex space-x-6 text-sm">
+            <li><%=link_to "zaloguj się", new_user_session_path, class: "py-2 hover:bg-gray-200 rounded-lg" %></li>
+            <li><%=link_to "zarejestruj się", new_user_registration_path, class: "py-2 hover:bg-gray-200 rounded-lg" %></li>
+          </ul>
         </div>
       <% end %>
     </div>
