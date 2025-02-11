@@ -58,5 +58,5 @@ end
 gem "importmap-rails", "~> 2.1"
 
 gem "tailwindcss-ruby", "~> 4.0"
-gem 'stimulus-rails'
+gem "stimulus-rails"
 gem "devise", "~> 4.9"
