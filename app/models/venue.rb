@@ -6,5 +6,4 @@ class Venue < ApplicationRecord
 
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
-
 end
