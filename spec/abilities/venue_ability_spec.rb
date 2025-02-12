@@ -17,10 +17,10 @@ RSpec.describe VenueAbility do
 
   let(:user) { nil }
   let(:venue_owner) { create(:owner) }
-  let(:active_venue) { create(:venue, user: venue_owner, is_active: true) }
-  let(:inactive_venue) { create(:venue, user: venue_owner, is_active: false) }
-  let(:others_active_venue) { create(:venue, user: create(:owner), is_active: true) }
-  let(:others_inactive_venue) { create(:venue, user: create(:owner), is_active: false) }
+  let(:active_venue) { create(:venue, user: venue_owner, is_activate: true) }
+  let(:inactive_venue) { create(:venue, user: venue_owner, is_activate: false) }
+  let(:others_active_venue) { create(:venue, user: create(:owner), is_activate: true) }
+  let(:others_inactive_venue) { create(:venue, user: create(:owner), is_activate: false) }
 
   context 'when user is not logged in' do
     include_examples "can read only active venues"
@@ -51,8 +51,8 @@ RSpec.describe VenueAbility do
 
   context 'when user is a owner' do
     let (:user) { create(:owner) }
-    let(:own_active_venue) { create(:venue, user: user, is_active: true) }
-    let(:own_inactive_venue) { create(:venue, user: user, is_active: false) }
+    let(:own_active_venue) { create(:venue, user: user, is_activate: true) }
+    let(:own_inactive_venue) { create(:venue, user: user, is_activate: false) }
 
     context 'can read all own venues regardless of status' do
       it { is_expected.to be_able_to(:read, own_active_venue) }

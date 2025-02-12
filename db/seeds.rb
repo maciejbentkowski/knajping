@@ -29,6 +29,7 @@ puts "Created #{User.admin.all.count} Admin, #{User.moderator.all.count} Moderat
     Venue.create!(
       name: Faker::Restaurant.name,
       is_activate: [ true, false ].sample,
+      user_id: User.where(role: :owner).sample.id
     )
 end
 
