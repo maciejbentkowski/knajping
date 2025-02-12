@@ -42,7 +42,7 @@ group :development, :test do
   gem "brakeman", require: false
 
   gem "rubocop-rails-omakase", require: false
-
+  gem "factory_bot_rails"
   gem "rspec-rails", "~> 7.1.1"
   gem "faker"
 end
