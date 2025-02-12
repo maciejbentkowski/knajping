@@ -4,19 +4,19 @@ FactoryBot.define do
       sequence(:email) { |n| "User#{n}@sample.com" }
       password { "password" }
       role { :reviewer }
-  
+
       trait :admin do
         role { :admin }
       end
-  
+
       trait :moderator do
         role { :moderator }
       end
-  
+
       trait :owner do
         role { :owner }
       end
-  
+
       factory :admin, traits: [ :admin ]
       factory :moderator, traits: [ :moderator ]
       factory :owner, traits: [ :owner ]

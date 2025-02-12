@@ -11,5 +11,4 @@ class VenuesController < ApplicationController
     def current_ability
         @current_ability ||= VenueAbility.new(current_user)
     end
-
 end
