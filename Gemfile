@@ -53,6 +53,9 @@ end
 
 group :test do
   gem "shoulda-matchers", "~> 6.0"
+  gem "simplecov", require: false
+  gem "rails-controller-testing"
+  gem "database_cleaner-active_record"
 end
 
 gem "importmap-rails", "~> 2.1"
