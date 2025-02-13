@@ -2,6 +2,9 @@
   <div class="bg-gray-100 px-4 py-2">
     <div class="flex justify-between items-center">
       <div class="flex md:hidden">
+        <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
+      </div>
+      <div class="flex end md:hidden">
         <div data-controller="dropdown">
           <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-lg focus:outline-none lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -9,23 +12,28 @@
             </svg>
           </button>
           <% if user_signed_in? %>
-            <ul data-dropdown-target="menu" class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+            <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
               <li class="hover:bg-gray-100 rounded-lg">
                 <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
               </li>
             </ul>
           <% else %>
-            <ul data-dropdown-target="menu" class="hidden absolute left-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
-              <li class="hover:bg-gray-100 rounded-lg">
-                <%=link_to "Lokale", venues_path, class: "block px-4 py-2"%>
-              </li>
-              <li class="hover:bg-gray-100 rounded-lg">
-                <span class="block px-4 py-2">Logowanie:</span>
+            <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-42 bg-white rounded-lg shadow-lg p-2 z-50">
+              <li class="hover:bg-gray-100 rounded-lg mx-2">
+                <span class="block px-4 py-2 font-bold">Menu:</span>
                 <ul class="ml-8">
                   <li class="hover:bg-gray-100 rounded-lg">
+                    <%=link_to "Lokale", venues_path%>
+                  </li>
+                </ul>
+              </li>
+              <li class="hover:bg-gray-100 rounded-lg mx-2">
+                <span class="block px-4 py-2 font-bold ">Logowanie:</span>
+                <ul class="ml-8">
+                  <li class="hover:bg-gray-100 rounded-lg my-1">
                     <%=link_to "Zaloguj się", new_user_session_path%>
                   </li>
-                  <li class="hover:bg-gray-100 rounded-lg">
+                  <li class="hover:bg-gray-100 rounded-lg my-1">
                     <%=link_to "Zarejestruj się", new_user_registration_path%>
                   </li>
                 </ul>
@@ -37,15 +45,10 @@
       <div class="hidden md:flex">
         <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
       </div>
-      <div class="flex ">
-        <div class="hidden md:flex ">
-          <ul class="flex space-x-4">
-            <li><%=link_to "Lokale", venues_path, class: "px-4 py-2 hover:bg-gray-200 rounded-lg" %></li>
-          </ul>
-        </div>
-        <div class="flex md:hidden">
-          <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
-        </div>
+      <div class="hidden md:flex ">
+        <ul class="flex space-x-4">
+          <li><%=link_to "Lokale", venues_path, class: "px-4 py-2 hover:bg-gray-200 rounded-lg" %></li>
+        </ul>
       </div>
       <% if user_signed_in? %>
         <div class="flex items-center">
