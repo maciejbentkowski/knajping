@@ -1,0 +1,38 @@
+<div data-controller="carousel" class="relative w-full overflow-hidden">
+  <div data-carousel-target="container" class="flex transition-transform duration-300 ease-in-out">
+    <% venues.each.with_index(1) do |venue, index| %>
+      <div data-carousel-target="slide" class="w-full flex-shrink-0">
+        <div class="@container">
+          <div class="w-full min-h-36 border-2 bg-amber-600">
+            <%=venue.name%>
+            <%=index%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+    <button data-action="carousel#previous" 
+            class="rounded-full w-5 h-5 md:w-10 md:h-10 bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-all duration-200 hover:scale-105">
+      <span class="sr-only">Previous</span>
+      ❮
+    </button>
+    <button data-action="carousel#next"
+            class="rounded-full w-5 h-5 md:w-10 md:h-10 bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-all duration-200 hover:scale-105">
+      <span class="sr-only">Next</span>
+      ❯
+    </button>
+  </div>
+  <div class="absolute bottom-4 left-0 right-0">
+    <div class="flex justify-center gap-2">
+      <% venues.count.times do |i| %>
+        <button data-action="carousel#goToSlide"
+                data-slide="<%= i %>"
+                data-carousel-target="dot"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-200">
+          <span class="sr-only">Go to slide <%= i + 1 %></span>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>
