@@ -1,0 +1,44 @@
+<%= form_with(model: venue) do |form| %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 justify-items-stretch ">
+    <div class= "col-span-1">
+      <div>
+        <label class="w-full max-w-xs">
+          <div class="mb-2">
+            <%= form.label :name, "Nazwa lokalu", class:"block text-lg font-medium text-gray-700" %>
+          </div>
+          <%= form.text_field :name, class:"w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        </label>
+      </div>
+    </div>
+  </div>
+  <% if action_name == 'new' %>
+    <div class="text-xs my-2">
+      <p>Po stworzeniu swojego lokalu, będzie on widoczny tylko dla Ciebie. Aktywuj go w swoim profilu</p>
+    </div>
+    <div class="flex justify-center">
+      <button class="w-64 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors duration-200 
+                     text-xs sm:text-sm md:text-base lg:text-lg 
+                     sm:py-2 md:py-2.5 lg:py-3">
+        <%= form.submit%>
+      </button>
+    </div>
+  <% else %>
+    <div class="my-2">
+      <div class="flex items-center justify-center">
+        <label class="flex items-center cursor-pointer">
+          <span class="px-4 text-gray-700">
+            <%= form.label :is_activate, "Czy Twój lokal jest aktywny?" %>
+          </span>
+          <%= form.check_box :is_activate, class: "checkbox border-amber-700 [--chkbg:theme(colors.base-300)] [--chkfg:orange] checked:border-amber-700" %>
+        </label>
+      </div>
+      <div class="flex justify-center">
+        <button class="w-64 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors duration-200 
+                     text-xs sm:text-sm md:text-base lg:text-lg 
+                     sm:py-2 md:py-2.5 lg:py-3">
+          <%= form.submit%>
+        </button>
+      </div>
+    <% end %>
+  </div>
+<% end %>
