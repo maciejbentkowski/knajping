@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-    before_action :set_venue, only: [:show, :edit, :update]
+    before_action :set_venue, only: [ :show, :edit, :update ]
     authorize_resource
 
     def index
@@ -7,7 +7,6 @@ class VenuesController < ApplicationController
     end
 
     def show
-
     end
 
     def new
@@ -15,7 +14,7 @@ class VenuesController < ApplicationController
     end
 
     def create
-        @venue = Venue.new(venue_params.merge(user_id:current_user.id))
+        @venue = Venue.new(venue_params.merge(user_id: current_user.id))
 
         if @venue.save
             redirect_to venue_path(@venue)
@@ -24,9 +23,8 @@ class VenuesController < ApplicationController
             redirect_to new_venue_path
         end
     end
-    
+
     def edit
-    
     end
 
     def update

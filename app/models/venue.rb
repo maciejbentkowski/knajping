@@ -1,5 +1,4 @@
 class Venue < ApplicationRecord
-
     after_initialize :set_activate_to_false, if: :new_record?
     belongs_to :user
 
