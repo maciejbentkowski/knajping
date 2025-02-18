@@ -1,9 +1,17 @@
 <div class="@container/venues">
-  <div class=" block sm:grid sm:grid-cols-12">
+  <div class="place-items-stretch mx-20 ">
+    <%= form_tag venues_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance",
+     controller: "search", action: "input->search#submit"} do |f|%>
+      <%= text_field_tag "query", nil, placeholder: "Wyszukaj lokal ...", class:"w-full my-5 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"%>
+    <% end %>
+  </div>
+  <div class="block sm:grid sm:grid-cols-12">
     <div class="col-span-12 sm:col-span-5 divide-y-1 divide-gray-100">
-      <%=render partial: "venues_list", locals: {venues: @venues }%>
+      <%= turbo_frame_tag "search-results" do %>
+        <%=render partial: "venues/venues_list", locals: {venues: @venues }%>
+      <% end %>
     </div>
-    <div class="col-span-0 sm:col-span-7">
+    <div class="hidden sm:block col-span-0 sm:col-span-7">
       MAP
     </div >
   </div>

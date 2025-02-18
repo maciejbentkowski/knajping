@@ -10,6 +10,12 @@ class Venue < ApplicationRecord
 
     scope :recent, -> { active.order(created_at: :desc).limit(5) }
 
+    def self.search(params)
+        params[:query].blank? ? all : where(
+            "lower(name) LIKE ?", "%#{sanitize_sql_like((params[:query]).downcase)}%"
+        )
+    end
+
     private
 
     def set_activate_to_false

@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
     authorize_resource
 
     def index
-        @venues = Venue.active
+        @venues = Venue.active.search(params)
     end
 
     def show
