@@ -5,3 +5,8 @@
     <%=render partial: "venue_list_item", locals:{venue: venue}%>
   <% end%>
 <% end %>
+<div class="justify-items-center">
+  <div class="my-2 ">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>

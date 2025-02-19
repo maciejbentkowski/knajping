@@ -4,6 +4,8 @@ class VenuesController < ApplicationController
 
     def index
         @venues = Venue.active.search(params)
+
+        @pagy, @venues = pagy(@venues)
     end
 
     def show

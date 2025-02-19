@@ -65,3 +65,4 @@ gem "stimulus-rails"
 gem "devise", "~> 4.9"
 gem "cancancan"
 gem "turbo-rails"
+gem 'pagy', '~> 9.3'

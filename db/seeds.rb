@@ -25,7 +25,7 @@ sample_users = [
 User.create!(sample_users)
 puts "Created #{User.admin.all.count} Admin, #{User.moderator.all.count} Moderator, #{User.owner.all.count} Owners, and #{User.reviewer.all.count} Plain Users"
 
-(1..40).each do
+(1..60).each do
     Venue.create!(
       name: Faker::Restaurant.name,
       is_activate: [ true, false ].sample,
