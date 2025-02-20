@@ -9,8 +9,9 @@ RSpec.describe VenuesController, type: :controller do
     end
 
     describe "GET #show" do
+      let(:venue) { create(:venue) }
       it "has a 200 status code" do
-        get :show
+        get :show, params: { id: venue.id }
         expect(response.status).to eq(200)
       end
     end
