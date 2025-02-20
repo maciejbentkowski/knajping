@@ -2,12 +2,17 @@ class Venue < ApplicationRecord
     after_initialize :set_activate_to_false, if: :new_record?
     belongs_to :user
 
+    has_many :reviews, dependent: :destroy
+
+
+    
     validates :name, presence: true
     validates :is_activate, inclusion: { in: [ true, false ] }
 
+
+
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
-
     scope :recent, -> { active.order(created_at: :desc).limit(5) }
 
     def self.search(params)

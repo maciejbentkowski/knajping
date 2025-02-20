@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :venues, dependent: :nullify
+  has_many :reviews, dependent: :nulify
+
+  has_many :reviews, dependent: :destroy
 
   private
 
