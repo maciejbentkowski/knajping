@@ -9,7 +9,7 @@ class ReviewAbility
       return unless user.present?
   
       if user.reviewer?
-        can :create, Review
+        can [ :new, :create ], Review
         can [ :edit, :update ], Review do |review|
           review.user_id == user.id
         end
