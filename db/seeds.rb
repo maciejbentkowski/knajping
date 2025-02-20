@@ -37,3 +37,20 @@ puts "Created #{User.admin.all.count} Admin, #{User.moderator.all.count} Moderat
 end
 
 puts "Created #{Venue.all.count} Venues"
+
+
+puts "Creating Reviews"
+reviews = []
+(1..60).each do
+  reviews << {
+    title: Faker::Restaurant.name,
+    content: Faker::Restaurant.review,
+    venue_id: Venue.all.sample.id,
+    user_id: User.where(role: :reviewer).sample.id
+}
+end
+
+reviews.each do |review_data|
+  review= Review.create!(review_data)
+end
+puts "Created #{Review.all.count} Reviews"
