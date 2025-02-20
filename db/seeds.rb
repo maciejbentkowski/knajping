@@ -1,6 +1,9 @@
 require 'faker'
 
 
+puts "Destroying All Reviews"
+Review.destroy_all
+
 puts "Destroying All Venues"
 Venue.destroy_all
 
