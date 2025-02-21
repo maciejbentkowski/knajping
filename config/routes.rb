@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   root to: "pages#main"
 
-  resources :reviews, except: [ :new, :create ]
+
 
   resources :venues do
     resources :reviews, only: [ :new, :create ]
   end
 
-
+  resources :reviews, except: [ :new, :create ]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

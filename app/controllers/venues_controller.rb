@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
     before_action :set_venue, only: [ :show, :edit, :update ]
-    authorize_resource
+    load_and_authorize_resource
 
     def index
         @venues = Venue.active.search(params)
