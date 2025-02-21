@@ -10,7 +10,7 @@ RSpec.describe ReviewAbility do
   end
 
   let(:user) { nil }
-  let(:other_user_review) {create(:review)}
+  let(:other_user_review) { create(:review) }
 
   context 'when user is not logged in' do
     include_examples "can read all reviews"
@@ -24,14 +24,14 @@ RSpec.describe ReviewAbility do
 
   context 'when user is a regular user' do
     let(:user) { create(:user) }
-    let(:own_review) {create(:review, user: user)}
+    let(:own_review) { create(:review, user: user) }
 
     include_examples "can read all reviews"
 
     context 'can create and then edit or update his own reviews' do
       it { is_expected.to be_able_to(:create, Review) }
-      it { is_expected.to be_able_to(:edit, own_review)}
-      it { is_expected.to be_able_to(:update, own_review)}
+      it { is_expected.to be_able_to(:edit, own_review) }
+      it { is_expected.to be_able_to(:update, own_review) }
     end
 
     context 'cannot manage others venues' do
@@ -55,28 +55,28 @@ RSpec.describe ReviewAbility do
 
   context 'when user is a moderator' do
     let(:user) { create(:moderator) }
-    let(:own_review) {create(:review, user: user)}
+    let(:own_review) { create(:review, user: user) }
 
     include_examples "can read all reviews"
 
     context 'can create and manage any Review' do
         it { is_expected.to be_able_to(:create, Review) }
-        it { is_expected.to be_able_to(:manage, own_review)}
-        it { is_expected.to be_able_to(:manage, other_user_review)}
+        it { is_expected.to be_able_to(:manage, own_review) }
+        it { is_expected.to be_able_to(:manage, other_user_review) }
     end
   end
 
   context 'when user is an admin' do
     let(:user) { create(:admin) }
-    let(:own_review) {create(:review, user: user)}
+    let(:own_review) { create(:review, user: user) }
 
 
     include_examples "can read all reviews"
 
     context 'can create and manage any Review' do
         it { is_expected.to be_able_to(:create, Review) }
-        it { is_expected.to be_able_to(:manage, own_review)}
-        it { is_expected.to be_able_to(:manage, other_user_review)}
+        it { is_expected.to be_able_to(:manage, own_review) }
+        it { is_expected.to be_able_to(:manage, other_user_review) }
     end
   end
 end

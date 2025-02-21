@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe ReviewsController, type: :controller do
-    
     describe "GET #show" do
       let(:review) { create(:review) }
       it "has a 200 status code" do

@@ -4,8 +4,6 @@ class Venue < ApplicationRecord
 
     has_many :reviews, dependent: :destroy
 
-
-    
     validates :name, presence: true
     validates :is_activate, inclusion: { in: [ true, false ] }
 

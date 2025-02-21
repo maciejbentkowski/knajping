@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   root to: "pages#main"
 
-  resources :reviews, except: [:new, :create]
+  resources :reviews, except: [ :new, :create ]
 
   resources :venues do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [ :new, :create ]
   end
 
 
