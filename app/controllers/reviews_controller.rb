@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     def new
         @venue = Venue.find(params[:venue_id])
         existing_review = @venue.reviews.find_by(user: current_user)
-        
+
         if existing_review
             redirect_to edit_review_path(existing_review)
         else
