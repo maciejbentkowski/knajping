@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_20_132052) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_22_105018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "review_id"
+    t.integer "atmosphere_rating"
+    t.integer "availability_rating"
+    t.integer "quality_rating"
+    t.integer "service_rating"
+    t.integer "uniqueness_rating"
+    t.integer "value_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_ratings_on_review_id", unique: true
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
@@ -48,6 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_132052) do
     t.index ["user_id"], name: "index_venues_on_user_id"
   end
 
+  add_foreign_key "ratings", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
   add_foreign_key "venues", "users"
