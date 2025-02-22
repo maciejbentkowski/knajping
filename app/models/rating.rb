@@ -1,5 +1,5 @@
 class Rating < ApplicationRecord
-    belongs_to :review
+    belongs_to :review, inverse_of: :rating
 
     validates :atmosphere_rating,
             presence: true,

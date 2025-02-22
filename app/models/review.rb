@@ -2,7 +2,7 @@ class Review < ApplicationRecord
     belongs_to :user
     belongs_to :venue
 
-    has_one :rating
+    has_one :rating, dependent: :destroy, inverse_of: :review
 
     validates :title, presence: true
     validates :content, presence: true
