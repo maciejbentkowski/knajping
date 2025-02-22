@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
     def main
-        @venues = Venue.recent
+        @reviews = Review.recent
     end
 end

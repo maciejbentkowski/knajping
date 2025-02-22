@@ -1,7 +1,10 @@
 <div class="my-4">
-  <div class="@container/carousel">
-    <div class="mx-auto px-4 w-3/4 sm:w-1/2">
-      <%= render 'carousel', venues: @venues %>
+  <div class="@container/recent ">
+    <div class="mx-auto px-4 w-1/2 min-w-82  sm:hidden">
+      <%= render 'carousel', reviews: @reviews %>
+    </div>
+    <div class="hidden sm:flex px-4 max-w-7xl mx-auto ">
+      <%= render 'recent_reviews', reviews: @reviews %>
     </div>
   </div>
 </div>
