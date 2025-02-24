@@ -34,7 +34,6 @@ class ReviewsController < ApplicationController
         @review = Review.find(params[:id])
         @review.build_rating unless @review.rating
         @venue = @review.venue
-
     end
 
     def update

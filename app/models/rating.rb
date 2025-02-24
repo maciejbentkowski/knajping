@@ -30,5 +30,4 @@ class Rating < ApplicationRecord
             presence: true,
             numericality: { only_integer: true },
             inclusion: { in: 1..6 }
-
 end
