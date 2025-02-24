@@ -52,5 +52,14 @@ end
 
 reviews.each do |review_data|
   review= Review.create!(review_data)
+  Rating.create!(
+    review: review,
+    atmosphere_rating: rand(1..6),
+    availability_rating: rand(1..6),
+    quality_rating: rand(1..6),
+    service_rating: rand(1..6),
+    uniqueness_rating: rand(1..6),
+    value_rating: rand(1..6)
+  )
 end
 puts "Created #{Review.all.count} Reviews"
