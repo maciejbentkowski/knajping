@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
             redirect_to edit_review_path(existing_review)
         else
             @review = @venue.reviews.build
+            @review.build_rating
         end
     end
 
@@ -24,14 +25,16 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to review_path(@review)
         else
-            flash[:alert] = "Nie udalo sie utworzyc oceny"
-            redirect_to new_venue_review_path
+            @review.build_rating unless @review.rating
+            render :new, status: :unprocessable_entity
         end
     end
 
     def edit
         @review = Review.find(params[:id])
+        @review.build_rating unless @review.rating
         @venue = @review.venue
+
     end
 
     def update
@@ -48,6 +51,17 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:title, :content)
-    end
+        params.require(:review).permit(
+          :title,
+          :content,
+          rating_attributes: [
+            :atmosphere_rating,
+            :availability_rating,
+            :quality_rating,
+            :service_rating,
+            :uniqueness_rating,
+            :value_rating
+          ]
+        )
+      end
 end
