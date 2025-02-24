@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
     load_and_authorize_resource
 
     def index
-        @venues = Venue.active.search(params)
+        @venues = Venue.active.includes(:reviews).search(params)
 
         @pagy, @venues = pagy(@venues)
     end

@@ -17,7 +17,7 @@
                   <%=link_to venue.name, venue_path(venue), data: {turbo_frame: "_top"}%>
                 </h3>
                 <div class="text-xs">
-                  Reviews
+                  <%=venue_ratings(venue)%>
                 </div>
               </div>
               <div class="">

@@ -19,6 +19,14 @@ class Venue < ApplicationRecord
         )
     end
 
+    def avg_venue_rating
+        if reviews.loaded?
+            reviews.empty? ? 0 : (reviews.sum(&:avg_rating) / reviews.size.to_f).round(2)
+          else
+            reviews.average(:avg_rating)&.round(2) || 0
+          end
+    end
+
     private
 
     def set_activate_to_false
