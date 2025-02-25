@@ -7,13 +7,43 @@
       <%=review.user.username%>
     </h4>
   </div>
-  <div class="mt-3 text-center">
-    <%=review.avg_rating%>
+  <div data-controller="ratings-dropdown" >
+    <div class="mt-3 text-center">
+      <button type="button" data-action="ratings-dropdown#toggle" class="group flex items-center justify-center space-x-1 mx-auto">
+        <div class="">
+          <%=review.avg_rating%> / 6.00
+        </div>
+        <svg class="w-4 h-4 transition-transform duration-200 ease-in-out transform" 
+             data-ratings-dropdown-target="arrow"
+             xmlns="http://www.w3.org/2000/svg" 
+             fill="none" 
+             viewBox="0 0 24 24" 
+             stroke="currentColor">
+          <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2" 
+                d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div>
+    <div data-ratings-dropdown-target="ratings" class="hidden transform transition-all duration-300 ease-in-out opacity-0 -translate-y-2">
+      <div class="flex flex-wrap text-center justify-evenly mt-2 ">
+        <% review.rating_dictionary.each do |category, rating| %>
+          <div class="mx-4 my-2">
+            <div class="text-xs md:text-sm">
+              <%= category %>
+            </div>
+            <div class="text-xs md:text-sm">
+              <%= rating %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="text-xs/5 sm:text-sm/5 my-6 indent-2 tracking-tight">
     <p>
       <%=review.content%>
     </p>
   </div>
-</span>
 </div>
