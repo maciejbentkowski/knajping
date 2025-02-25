@@ -8,8 +8,8 @@ RSpec.describe Rating, type: :model do
     it { should validate_presence_of(:value_rating) }
 
     let(:valid_rating_range) { 1..6 }
-    [:atmosphere_rating, :availability_rating, :quality_rating, 
-     :service_rating, :uniqueness_rating, :value_rating].each do |rating_field|
+    [ :atmosphere_rating, :availability_rating, :quality_rating,
+     :service_rating, :uniqueness_rating, :value_rating ].each do |rating_field|
       it { should validate_inclusion_of(rating_field).in_range(valid_rating_range) }
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe Rating, type: :model do
     describe '#update_review_avg_rating' do
       let(:review) { create(:review) }
       let(:rating) { review.rating }
-      
+
       it 'updates review avg_rating when rating changes' do
         old_avg = rating.review.avg_rating
         rating.update(atmosphere_rating: 3)
@@ -27,7 +27,7 @@ RSpec.describe Rating, type: :model do
 
       it 'calculates correct average after multiple rating changes' do
         rating.update(atmosphere_rating: 2, service_rating: 3)
-        
+
         expected_avg = [
           rating.atmosphere_rating = 2, # atmosphere rating changed
           rating.availability_rating,
@@ -54,7 +54,7 @@ RSpec.describe Rating, type: :model do
         rating.uniqueness_rating,
         rating.value_rating
       ]
-      
+
       expected_avg = (ratings.sum.to_f / ratings.size).round(2)
       expect(rating.send(:avg_rating)).to eq(expected_avg)
     end

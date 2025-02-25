@@ -3,8 +3,14 @@
     Recenzje:
   </h4>
   <div class="my-4">
-    <%reviews.each do |review|%>
-      <%=render partial: "reviews_list_item", locals:{review: review}%>
-    <% end%>
+    <% if reviews.size > 0 %>
+      <%reviews.each do |review|%>
+        <%=render partial: "reviews_list_item", locals:{review: review}%>
+      <% end%>
+    <% else %>
+      <div>
+        Nikt jeszcze nie ocenil tego lokalu, bądź pierwszy
+      </div>
+    <%end%>
   </div>
 </div>

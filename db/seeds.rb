@@ -41,7 +41,7 @@ puts "Created #{Venue.all.count} Venues"
 
 puts "Creating Reviews"
 reviews = []
-(1..60).each do
+(1..150).each do
   reviews << {
     title: Faker::Restaurant.name,
     content: Faker::Restaurant.review,
