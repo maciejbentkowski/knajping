@@ -1,0 +1,10 @@
+<div>
+  <h4 class="text-xl lg:text-3xl">
+    Recenzje:
+  </h4>
+  <div class="my-4">
+    <%reviews.each do |review|%>
+      <%=render partial: "reviews_list_item", locals:{review: review}%>
+    <% end%>
+  </div>
+</div>

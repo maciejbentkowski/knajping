@@ -2,7 +2,7 @@
   <div class="col-span-12">Nie znaleźliśmy lokalu którego szukasz</div>
 <% else %>
   <% venues.each do |venue|%>
-    <%=render partial: "venue_list_item", locals:{venue: venue}%>
+    <%=render partial: "venues_list_item", locals:{venue: venue}%>
   <% end%>
 <% end %>
 <div class="col-span-12">

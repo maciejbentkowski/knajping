@@ -9,6 +9,8 @@ class VenuesController < ApplicationController
     end
 
     def show
+
+        @venue_reviews = @venue.reviews
     end
 
     def new
