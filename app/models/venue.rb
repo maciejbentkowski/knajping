@@ -2,6 +2,8 @@ class Venue < ApplicationRecord
     after_initialize :set_activate_to_false, if: :new_record?
     belongs_to :user
 
+    has_many :venue_venue_types, dependent: :destroy
+    has_many :venue_types, through: :venue_venue_types
     has_many :reviews, dependent: :destroy
 
     validates :name, presence: true
