@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
     def main
-        @reviews = Review.recent.includes(:venue)
+        @featured_venues = Venue.active.sample(3)
+        @reviews = Review.recent.includes(:venue, :user)
     end
 end
