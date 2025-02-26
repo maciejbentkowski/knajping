@@ -7,3 +7,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "debounce", to: "https://ga.jspm.io/npm:debounce@2.2.0/index.js"
+pin "@fortawesome/fontawesome-free", to: "https://ga.jspm.io/npm:@fortawesome/fontawesome-free@6.5.1/js/all.js"

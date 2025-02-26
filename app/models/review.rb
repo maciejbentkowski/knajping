@@ -9,7 +9,7 @@ class Review < ApplicationRecord
     validates :title, presence: true
     validates :content, presence: true
 
-    scope :recent, -> { order(created_at: :desc).limit(10) }
+    scope :recent, -> { order(created_at: :desc).limit(3) }
 
     def rating_dictionary
         rating_dictionary = {}
