@@ -1,39 +1,38 @@
-<div class="@container/venue_card hover:bg-gray-100">
-  <div class="w-3/4 mx-auto">
-    <div class="w-full min-h-32 bg-base-100">
-      <div class="grid grid-cols-12">
-        <div class="col-span-4">
-          <div class="relative bg-cover bg-no-repeat p-3">
-            PHOTO
-            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-            </div>
-          </div>
-        </div>
-        <div class="col-span-8">
-          <div class="ml-2">
-            <div class="flex">
-              <div class="">
-                <h3 class="text-md mt-2 sm:text-xs md:text-lg font-medium">
-                  <%=link_to venue.name, venue_path(venue), data: {turbo_frame: "_top"}%>
-                </h3>
-                <div class="text-xs">
-                  <div data-controller="rating-display" 
-     data-rating-display-rating-value="<%= venue.avg_rating %>" 
-     data-rating-display-max-stars-value="6">
-                    <div data-rating-display-target="starContainer" class="flex text-yellow-400"></div>
-                    <span data-rating-display-target="ratingValue" class="ml-2 text-gray-500 text-sm"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <div class="text-xs italic mt-2">
-              CATEGORIES
-            </div>
-          </div>
-        </div>
+<!-- _venues_list_item.html.erb -->
+<div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+  <div class="grid grid-cols-12">
+    <!-- Venue Image -->
+    <div class="col-span-4">
+      <div class="relative h-full">
+        Photo
       </div>
+    </div>
+    <!-- Venue Details -->
+    <div class="col-span-8 p-4">
+      <h3 class="text-lg font-semibold mb-1 hover:text-indigo-600 transition">
+        <%= link_to venue.name, venue_path(venue), data: {turbo_frame: "_top"} %>
+      </h3>
+      <!-- Star Rating -->
+      <div data-controller="rating-display" 
+          data-rating-display-rating-value="<%= venue.avg_rating || 0 %>" 
+          data-rating-display-max-stars-value="6">
+        <div data-rating-display-target="starContainer" class="flex text-yellow-400 text-sm"></div>
+      </div>
+      <!-- Location -->
+      <div class="flex items-center text-sm text-gray-500 mt-2">
+        <i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>
+        Venue adress
+      </div>
+      <!-- Categories -->
+      <div class="flex flex-wrap gap-2 mt-3">
+        Categories
+      </div>
+      <!-- Preview text or latest review snippet -->
+      <% if venue.reviews.any? %>
+        <p class="text-gray-600 text-sm mt-2 line-clamp-2">
+          "<%= venue.reviews.first.content %>"
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

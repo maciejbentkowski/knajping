@@ -1,18 +1,45 @@
-<div class="@container/venues">
-  <div class="place-items-stretch mx-10 sm:mx-20 ">
-    <%= form_tag venues_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance",
-     controller: "search", action: "input->search#submit"} do |f|%>
-      <%= text_field_tag "query", nil, placeholder: "Wyszukaj lokal ...", class:"w-full my-5 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"%>
-    <% end %>
-  </div>
-  <div class="block sm:grid sm:grid-cols-12">
-    <div class="col-span-12 sm:col-span-5 divide-y-1 divide-gray-100">
-      <%= turbo_frame_tag "search-results" do %>
-        <%=render partial: "venues/venues_list", locals: {venues: @venues }%>
+<!-- venues/index.html.erb -->
+<div class="bg-gray-50 min-h-screen">
+  <!-- Search Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <%= form_tag venues_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance",
+      controller: "search", action: "input->search#submit"} do |f|%>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-search text-gray-400"></i>
+          </div>
+          <%= text_field_tag "query", nil, placeholder: "Search for venues...", class:"w-full pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"%>
+        </div>
       <% end %>
+      <!-- Filter pills -->
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm hover:bg-indigo-200 transition">All</button>
+        <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition">Restaurants</button>
+        <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition">Cafes</button>
+        <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition">Bars</button>
+        <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition">Highest Rated</button>
+      </div>
     </div>
-    <div class="hidden sm:block col-span-0 sm:col-span-7">
-      MAP
-    </div >
+  </div>
+  <!-- Results Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="block sm:grid sm:grid-cols-12 gap-6">
+      <!-- Venues List -->
+      <div class="col-span-12 sm:col-span-5">
+        <%= turbo_frame_tag "search-results" do %>
+          <%= render partial: "venues/venues_list", locals: {venues: @venues} %>
+        <% end %>
+      </div>
+      <!-- Map Section -->
+      <div class="hidden sm:block col-span-7 bg-white shadow-md rounded-lg overflow-hidden sticky top-4 h-[calc(100vh-120px)]">
+        <div class="h-full flex items-center justify-center bg-gray-100">
+          <div class="text-center">
+            <i class="fas fa-map-marked-alt text-indigo-300 text-5xl mb-4"></i>
+            <p class="text-gray-600">Map view of venues will appear here</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
