@@ -8,7 +8,6 @@ class Venue < ApplicationRecord
     validates :is_activate, inclusion: { in: [ true, false ] }
 
 
-
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
     scope :recent, -> { active.order(created_at: :desc).limit(5) }
