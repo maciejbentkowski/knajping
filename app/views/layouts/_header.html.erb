@@ -1,64 +1,71 @@
 <header>
-  <div class="bg-gray-100 px-4 py-2">
-    <div class="flex justify-between items-center">
-      <div>
-        <%= link_to "Knajping", root_path, class: "text-xl font-semibold hover:bg-gray-200 px-4 py-2 rounded-lg"%>
-      </div>
-      <div>
-        <%=link_to "Lokale", venues_path, class: "block hover:bg-gray-200 px-4 py-2 rounded-lg"%>
-      </div>
-      <% if user_signed_in? %>
+  <nav class="bg-indigo-600 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16">
         <div class="flex items-center">
-          <div class="hidden md:block pr-10 text-gray-800">
-            Cześć, <%= current_user.username %>
+          <div class="flex-shrink-0 flex items-center">
+            <span class="text-white text-2xl font-bold">Knajping</span>
           </div>
-          <div data-controller="dropdown" class="">
-            <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-full">
-              <div class="w-10 h-10 rounded-full overflow-hidden">
-                avatar
+          <div class="ml-6 md:flex md:space-x-8">
+            <%=link_to "Lokale", venues_path, class: "text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"%>
+            <a href="#" class="hidden md:flex text-indigo-200 hover:bg-indigo-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Categories</a>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <% if user_signed_in? %>
+            <div class="hidden md:flex text-white">
+              Cześć, current user
+            </div>
+            <div class="ml-4 flex items-center md:ml-6">
+              <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
+                <i class="fas fa-bell text-xl"></i>
+              </button>
+              <div class="ml-3 relative">
+                <div>
+                  <div data-controller="dropdown" class="">
+                    <button data-action="dropdown#toggle" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true">
+                      <img class="h-8 w-8 rounded-full" src="/api/placeholder/32/32" alt="User profile">
+                    </button>
+                    <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+                      <li class="hover:bg-gray-100 rounded-lg">
+                        Profil
+                      </li>
+                      <% if (current_user.role == "owner")%>
+                        <li class="hover:bg-gray-100 rounded-lg">
+                          <%=link_to "Dodaj lokal", new_venue_path%>
+                        </li>
+                      <% end%>
+                      <li class="hover:bg-gray-100 rounded-lg">
+                        <%=button_to "Wyloguj się", destroy_user_session_path, method: :delete %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </button>
-            <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
-              <li class="hover:bg-gray-100 rounded-lg">
-                Profil
-              </li>
-              <% if (current_user.role == "owner")%>
-                <li class="hover:bg-gray-100 rounded-lg">
-                  <%=link_to "Dodaj lokal", new_venue_path%>
-                </li>
-              <% end%>
-              <li class="hover:bg-gray-100 rounded-lg">
-                <%=button_to "Wyloguj się", destroy_user_session_path, method: :delete %>
-              </li>
-            </ul>
-          </div>
+            </div>
+          <% else %>
+            <div class="md:hidden">
+              <div data-controller="dropdown">
+                <button data-action="dropdown#toggle" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                  </svg>
+                </button>
+                <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
+                  <li><%=link_to "zaloguj się", new_user_session_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
+                  <li><%=link_to "zarejestruj się", new_user_registration_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
+                </ul>
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <ul class="flex space-x-6 text-sm">
+                <li><%=link_to "zaloguj się", new_user_session_path, class: "text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium" %></li>
+                <li><%=link_to "zarejestruj się", new_user_registration_path, class: "text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium" %></li>
+              </ul>
+            </div>
+          <% end %>
         </div>
-      <% else %>
-        <div class="flex sm:hidden">
-          <div data-controller="dropdown">
-            <button data-action="dropdown#toggle" class="p-2 hover:bg-gray-200 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-            </button>
-            <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
-              <li class="hover:bg-gray-100 rounded-lg">
-                Profil
-              </li>
-              <li class="hover:bg-gray-100 rounded-lg">
-                <li><%=link_to "zaloguj się", new_user_session_path, class: "p-2 hover:bg-gray-200 rounded-lg" %></li>
-                <li><%=link_to "zarejestruj się", new_user_registration_path, class: "p-2 hover:bg-gray-200 rounded-lg" %></li>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="hidden sm:block">
-          <ul class="flex space-x-6 text-sm">
-            <li><%=link_to "zaloguj się", new_user_session_path, class: "p-2 hover:bg-gray-200 rounded-lg" %></li>
-            <li><%=link_to "zarejestruj się", new_user_registration_path, class: "p-2 hover:bg-gray-200 rounded-lg" %></li>
-          </ul>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
+  </nav>
 </header>
