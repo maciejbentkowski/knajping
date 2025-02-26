@@ -30,11 +30,10 @@ class Review < ApplicationRecord
         return 0 unless rating
         rating.avg_rating
     end
-  
+
     private
-  
+
     def update_venue_avg_rating
         venue.update_avg_rating
     end
-
 end

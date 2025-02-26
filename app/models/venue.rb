@@ -22,7 +22,7 @@ class Venue < ApplicationRecord
         new_avg = calculate_avg_rating
         update_column(:avg_rating, new_avg)
     end
-      
+
     def calculate_avg_rating
         if reviews.loaded?
           reviews.empty? ? 0 : (reviews.sum(&:avg_rating) / reviews.size.to_f).round(2)
