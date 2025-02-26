@@ -19,12 +19,21 @@ class Venue < ApplicationRecord
         )
     end
 
-    def avg_venue_rating
+    def update_avg_rating
+        new_avg = calculate_avg_rating
+        update_column(:avg_rating, new_avg)
+    end
+      
+    def calculate_avg_rating
         if reviews.loaded?
-            reviews.empty? ? 0 : (reviews.sum(&:avg_rating) / reviews.size.to_f).round(2)
+          reviews.empty? ? 0 : (reviews.sum(&:avg_rating) / reviews.size.to_f).round(2)
         else
-            reviews.average(:avg_rating)&.round(2) || 0
+          reviews.average(:avg_rating)&.round(2) || 0
         end
+    end
+
+    def avg_venue_rating
+        avg_rating.present? ? avg_rating : 0
     end
 
     private

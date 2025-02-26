@@ -11,6 +11,9 @@ class Review < ApplicationRecord
 
     scope :recent, -> { order(created_at: :desc).limit(3) }
 
+    after_save :update_venue_avg_rating
+    after_destroy :update_venue_avg_rating
+
     def rating_dictionary
         rating_dictionary = {}
         rating_dictionary["Wartość"] = self.rating.value_rating
@@ -22,4 +25,16 @@ class Review < ApplicationRecord
 
         rating_dictionary
     end
+
+    def avg_rating
+        return 0 unless rating
+        rating.avg_rating
+    end
+  
+    private
+  
+    def update_venue_avg_rating
+        venue.update_avg_rating
+    end
+
 end
