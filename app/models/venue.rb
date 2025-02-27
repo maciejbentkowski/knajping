@@ -37,6 +37,35 @@ class Venue < ApplicationRecord
         avg_rating.present? ? avg_rating : 0
     end
 
+    def main_types(limit = 3)
+        venue_venue_types.where("importance > 0")
+                        .order(importance: :desc)
+                        .limit(limit)
+                        .includes(:venue_type)
+                        .map(&:venue_type)
+    end
+      
+    def side_types
+        venue_venue_types.where(importance: 0)
+                        .includes(:venue_type)
+                        .map(&:venue_type)
+    end
+      
+    def add_type(venue_type, importance = 0)
+        venue_venue_types.find_or_create_by(venue_type: venue_type)
+                        .update(importance: importance)
+    end
+      
+
+    def add_main_type(venue_type, position = 1)
+        position = [[position.to_i, 3].min, 1].max
+        add_type(venue_type, position)
+    end
+      
+    def add_side_type(venue_type)
+        add_type(venue_type, 0)
+    end
+
     private
 
     def set_activate_to_false
