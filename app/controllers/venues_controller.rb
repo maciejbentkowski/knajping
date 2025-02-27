@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
-    before_action :set_venue, only: [:show, :edit, :update]
-    before_action :set_venue_types, only: [:new, :edit, :create, :update]
+    before_action :set_venue, only: [ :show, :edit, :update ]
+    before_action :set_venue_types, only: [ :new, :edit, :create, :update ]
     load_and_authorize_resource
 
     def index
@@ -15,17 +15,16 @@ class VenuesController < ApplicationController
 
     def new
         @venue = Venue.new()
-        
     end
 
     def create
       @venue = Venue.new(venue_params)
       @venue.user = current_user
-      
+
       if @venue.save
         process_venue_types
-        
-        redirect_to @venue, notice: 'Lokal został pomyślnie utworzony.'
+
+        redirect_to @venue, notice: "Lokal został pomyślnie utworzony."
       else
         render :new, status: :unprocessable_entity
       end
@@ -38,10 +37,10 @@ class VenuesController < ApplicationController
       if @venue.update(venue_params)
         # Remove all existing venue types first
         @venue.venue_venue_types.destroy_all
-        
+
         process_venue_types
-        
-        redirect_to @venue, notice: 'Lokal został pomyślnie zaktualizowany.'
+
+        redirect_to @venue, notice: "Lokal został pomyślnie zaktualizowany."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -68,9 +67,9 @@ class VenuesController < ApplicationController
       if params[:venue_types].present?
         params[:venue_types].each do |type_id, role|
           next if role.blank?
-          
+
           venue_type = VenueType.find(type_id)
-          
+
           case role
           when "main1"
             @venue.add_main_type(venue_type, 1)

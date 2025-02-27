@@ -25,7 +25,9 @@
       </div>
       <!-- Categories -->
       <div class="flex flex-wrap gap-2 mt-3">
-        Categories
+        <% venue.main_types.each do |category| %>
+          <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full"><%= category.name %></span>
+        <% end %>
       </div>
       <!-- Preview text or latest review snippet -->
       <% if venue.reviews.any? %>

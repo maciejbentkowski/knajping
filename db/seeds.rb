@@ -2,11 +2,11 @@ require 'faker'
 
 puts "Cleaning up the database..."
 puts "Destroying All Reviews and Ratings"
-Rating.destroy_all 
+Rating.destroy_all
 Review.destroy_all
 
 puts "Destroying All Venue-VenueType Associations"
-VenueVenueType.destroy_all 
+VenueVenueType.destroy_all
 
 puts "Destroying All Venues"
 Venue.destroy_all
@@ -62,20 +62,20 @@ puts "Created #{VenueType.count} Venue Types"
 puts "Creating Venues with Types"
 def assign_random_types(venue)
   all_types = VenueType.all.to_a
-  
+
   main_type_count = rand(1..3)
-  
+
   side_type_count = rand(0..5)
-  
+
   shuffled_types = all_types.shuffle
-  
+
   main_types = shuffled_types.take(main_type_count)
   main_types.each_with_index do |type, index|
     venue.add_main_type(type, index + 1)
   end
-  
+
   remaining_types = shuffled_types - main_types
-  
+
   side_types = remaining_types.take(side_type_count)
   side_types.each do |type|
     venue.add_side_type(type)
@@ -88,12 +88,11 @@ venue_count = 60
 venue_count.times do |i|
   venue = Venue.create!(
     name: Faker::Restaurant.name,
-    is_activate: [true, false].sample,
+    is_activate: [ true, false ].sample,
     user_id: owners.sample.id
   )
-  
+
   assign_random_types(venue)
-  
 end
 
 puts "\nCreated #{Venue.count} Venues"

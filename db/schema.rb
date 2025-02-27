@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_26_145339) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_26_203808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_26_145339) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venue_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "venue_venue_types", force: :cascade do |t|
+    t.bigint "venue_id", null: false
+    t.bigint "venue_type_id", null: false
+    t.integer "importance", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venue_id", "venue_type_id"], name: "index_venue_venue_types_on_venue_id_and_venue_type_id", unique: true
+    t.index ["venue_id"], name: "index_venue_venue_types_on_venue_id"
+    t.index ["venue_type_id"], name: "index_venue_venue_types_on_venue_type_id"
+  end
+
   create_table "venues", force: :cascade do |t|
     t.string "name"
     t.boolean "is_activate"
@@ -66,5 +84,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_26_145339) do
   add_foreign_key "ratings", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
+  add_foreign_key "venue_venue_types", "venue_types"
+  add_foreign_key "venue_venue_types", "venues"
   add_foreign_key "venues", "users"
 end
