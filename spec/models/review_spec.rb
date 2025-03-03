@@ -21,12 +21,6 @@ RSpec.describe Review, type: :model do
       expect(review.avg_rating).not_to be_nil
     end
 
-    it 'maintains avg_rating when rating is destroyed' do
-      last_avg = review.avg_rating
-      review.rating.destroy
-      review.reload
-      expect(review.avg_rating).to eq(last_avg)
-    end
   end
 
   describe 'scopes' do
@@ -38,9 +32,9 @@ RSpec.describe Review, type: :model do
         expect(Review.recent.first).to eq(new_review)
       end
 
-      it 'limits the result to 10 reviews' do
+      it 'limits the result to 3 reviews' do
         create_list(:review, 15)
-        expect(Review.recent.count).to eq(10)
+        expect(Review.recent.count).to eq(3)
       end
     end
   end

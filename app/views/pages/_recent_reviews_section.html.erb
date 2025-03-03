@@ -3,7 +3,9 @@
     <div class="bg-white overflow-hidden shadow rounded-lg">
       <div class="p-6">
         <div class="flex items-center mb-4">
-          <img class="h-12 w-12 rounded-full" src="/api/placeholder/48/48" alt="User avatar">
+          <div class="h-12 w-12 rounded-full">
+            <%=avatar(review.user)%>
+          </div>
           <div class="ml-4">
             <h3 class="text-lg font-medium text-gray-900"><%= review.user.username %></h3>
             <div class="flex items-center">

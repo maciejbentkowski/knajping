@@ -14,7 +14,7 @@
         <div class="flex items-center">
           <% if user_signed_in? %>
             <div class="hidden md:flex text-white">
-              Cześć, current user
+              Cześć, <%=current_user.username%>
             </div>
             <div class="ml-4 flex items-center md:ml-6">
               <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
@@ -23,8 +23,8 @@
               <div class="ml-3 relative">
                 <div>
                   <div data-controller="dropdown" class="">
-                    <button data-action="dropdown#toggle" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                      <img class="h-8 w-8 rounded-full" src="/api/placeholder/32/32" alt="User profile">
+                    <button data-action="dropdown#toggle" class="h-8 w-8 max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true">
+                      <%= avatar(current_user)%>
                     </button>
                     <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
                       <li class="hover:bg-gray-100 rounded-lg">

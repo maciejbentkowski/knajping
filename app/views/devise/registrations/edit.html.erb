@@ -39,10 +39,12 @@
                           class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
         </div>
         <div>
-          <%= f.label :current_password, "Aktualne hasło", class: "block text-sm font-medium text-gray-700" %>
-          <span class="text-xs text-gray-500">(potrzebujemy twojego aktualnego hasła, aby potwierdzić zmiany)</span>
-          <%= f.password_field :current_password, autocomplete: "current-password", 
-                          class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+          <% if @user.avatar.attached?%>
+            <%=image_tag(@user.avatar.variant(resize_to_fill: [ 200, 200 ]).processed, class: "my-4 rounded-md m-auto drop-shadow-2xl")%>
+            <%#=link_to "Usuń", remove_avatar_path(@user, avatar_id: @user.avatar.id), data: {confirm: "Are You sure?", turbo_method: :delete}, class: "mt-2 text-red-700"%>
+          <% end %>
+          <%= f.label :avatar, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.file_field :avatar, class:"file-input file-input-bordered w-full max-w-xs" %>
         </div>
       </div>
       <div>
