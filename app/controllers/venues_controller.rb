@@ -60,7 +60,7 @@ class VenuesController < ApplicationController
     end
 
     def venue_params
-        params.require(:venue).permit(:name, :is_activate)
+        params.require(:venue).permit(:name, :is_activate, :primary_photo)
     end
 
     def process_venue_types
