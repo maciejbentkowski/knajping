@@ -15,6 +15,7 @@ class Venue < ApplicationRecord
     scope :recent, -> { active.order(created_at: :desc).limit(5) }
     scope :featured_venues, -> { active.where(avg_rating:  4..).sample(3) }
 
+    has_one_attached :primary_photo
 
     def self.search(params)
         params[:query].blank? ? all : where(
