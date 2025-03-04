@@ -13,7 +13,7 @@ class Venue < ApplicationRecord
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
     scope :recent, -> { active.order(created_at: :desc).limit(5) }
-    scope :featured_venues, -> { active.where(avg_rating:  4..).sample(3) }
+    scope :featured_venues, -> { active.where(avg_rating:  4..).includes(:primary_photo_attachment, venue_venue_types: :venue_type).sample(3) }
 
     has_one_attached :primary_photo
 
@@ -41,11 +41,19 @@ class Venue < ApplicationRecord
     end
 
     def main_types(limit = 3)
-        venue_venue_types.where("importance > 0")
-                        .order(importance: :desc)
-                        .limit(limit)
-                        .includes(:venue_type)
-                        .map(&:venue_type)
+        if venue_venue_types.loaded?
+            venue_venue_types
+              .select { |vvt| vvt.importance > 0 }
+              .sort_by { |vvt| -vvt.importance }
+              .take(limit)
+              .map { |vvt| vvt.venue_type }
+          else
+            venue_venue_types.where("importance > 0")
+                            .order(importance: :desc)
+                            .limit(limit)
+                            .includes(:venue_type)
+                            .map(&:venue_type)
+          end
     end
 
     def side_types
