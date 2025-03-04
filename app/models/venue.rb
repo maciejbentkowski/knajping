@@ -47,13 +47,13 @@ class Venue < ApplicationRecord
               .sort_by { |vvt| -vvt.importance }
               .take(limit)
               .map { |vvt| vvt.venue_type }
-          else
+        else
             venue_venue_types.where("importance > 0")
                             .order(importance: :desc)
                             .limit(limit)
                             .includes(:venue_type)
                             .map(&:venue_type)
-          end
+        end
     end
 
     def side_types
