@@ -20,7 +20,6 @@ RSpec.describe Review, type: :model do
     it 'has avg_rating set after creation' do
       expect(review.avg_rating).not_to be_nil
     end
-
   end
 
   describe 'scopes' do
