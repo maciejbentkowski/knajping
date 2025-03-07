@@ -1,0 +1,34 @@
+FROM ruby:3.3.5-slim
+
+# Install required packages for development
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev \
+    curl nodejs npm libvips pkg-config postgresql-client sudo && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Fix permissions for bundle
+RUN mkdir -p /bundle && chmod 777 /bundle
+
+# Set up working directory
+WORKDIR /rails
+
+# Set environment variables
+ENV BUNDLE_PATH=/bundle \
+    BUNDLE_APP_CONFIG=/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3
+
+# Copy Gemfile and Gemfile.lock
+COPY Gemfile Gemfile.lock ./
+
+# Set development environment
+ENV RAILS_ENV=development
+
+# Expose port 3000
+EXPOSE 3000
+
+# Set the entrypoint
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Keep the container running
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
