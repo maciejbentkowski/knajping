@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev # Using a development-specific Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     depends_on:
@@ -10,11 +10,11 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: postgres://postgres:password@db:5432/knajping_development
-      BUNDLE_PATH: /bundle # Set bundle path to our volume
+      BUNDLE_PATH: /bundle
       BUNDLE_APP_CONFIG: /bundle
     volumes:
       - .:/rails
-      - bundle_cache:/bundle # Mount the bundle cache correctly
+      - bundle_cache:/bundle
       - knajping_storage:/rails/storage
       - ./config/master.key:/rails/config/master.key:ro
     command: sh -c "bundle install && bundle exec rails db:migrate && ./bin/rails server -b 0.0.0.0 -p 3000"
