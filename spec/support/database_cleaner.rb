@@ -1,4 +1,5 @@
 RSpec.configure do |config|
+  if Rails.env.test?
     config.before(:suite) do
       DatabaseCleaner.clean_with(:truncation)
     end
@@ -19,3 +20,4 @@ RSpec.configure do |config|
       DatabaseCleaner.clean
     end
   end
+end

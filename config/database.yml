@@ -5,11 +5,19 @@ default: &default
 
 development:
   <<: *default
-  database: knajping_development
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] || 5432 %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 test:
   <<: *default
-  database: knajping_test
+  host: <%= ENV['TEST_DB_HOST'] %>
+  port: <%= ENV['TEST_DB_PORT'] || 5432 %>
+  database: <%= ENV['TEST_DB_NAME'] %>
+  username: <%= ENV['TEST_DB_USERNAME'] %>
+  password: <%= ENV['TEST_DB_PASSWORD'] %>
 
 production:
   primary: &primary_production
