@@ -18,9 +18,9 @@ class Venue < ApplicationRecord
     has_one_attached :primary_photo
 
     geocoded_by :full_address
-    after_validation :geocode, if: ->(obj) { 
-        obj.address_changed? || obj.city_changed? || 
-        obj.postal_code_changed? 
+    after_validation :geocode, if: ->(obj) {
+        obj.address_changed? || obj.city_changed? ||
+        obj.postal_code_changed?
     }
 
     def self.search(params)
@@ -84,11 +84,11 @@ class Venue < ApplicationRecord
     end
 
     def full_address
-        [address, city, postal_code].compact.join(', ')
+        [ address, city, postal_code ].compact.join(", ")
       end
-      
+
       def abbreviated_address
-        [city].compact.join(', ')
+        [ city ].compact.join(", ")
       end
 
     private
