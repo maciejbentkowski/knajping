@@ -8,7 +8,7 @@ class Venue < ApplicationRecord
 
     validates :name, presence: true
     validates :is_activate, inclusion: { in: [ true, false ] }
-
+    validates :address, :city, presence: true
 
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
@@ -16,6 +16,12 @@ class Venue < ApplicationRecord
     scope :featured_venues, -> { active.where(avg_rating:  4..).includes(:primary_photo_attachment, venue_venue_types: :venue_type).sample(3) }
 
     has_one_attached :primary_photo
+
+    geocoded_by :full_address
+    after_validation :geocode, if: ->(obj) { 
+        obj.address_changed? || obj.city_changed? || 
+        obj.postal_code_changed? 
+    }
 
     def self.search(params)
         params[:query].blank? ? all : where(
@@ -76,6 +82,14 @@ class Venue < ApplicationRecord
     def add_side_type(venue_type)
         add_type(venue_type, 0)
     end
+
+    def full_address
+        [address, city, postal_code].compact.join(', ')
+      end
+      
+      def abbreviated_address
+        [city].compact.join(', ')
+      end
 
     private
 
