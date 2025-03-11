@@ -10,7 +10,7 @@ class VenuesController < ApplicationController
     end
 
     def show
-        @venue_reviews = @venue.reviews.includes(:rating, :user)
+        @venue_reviews = @venue.reviews.includes(:rating, :user, user: :avatar_attachment)
     end
 
     def new

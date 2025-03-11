@@ -29,6 +29,10 @@ class Venue < ApplicationRecord
         )
     end
 
+    def activate
+        self.is_activate
+    end
+
     def update_avg_rating
         new_avg = calculate_avg_rating
         update_column(:avg_rating, new_avg)
