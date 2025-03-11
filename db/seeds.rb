@@ -83,7 +83,7 @@ def assign_random_types(venue)
 end
 
 owners = User.where(role: :owner).to_a
-venue_count = 60
+venue_count = 150
 
 venue_count.times do |i|
   venue = Venue.create!(
