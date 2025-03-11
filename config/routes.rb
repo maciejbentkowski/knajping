@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: "pages#main"
 
-
+  get "profile", to: "pages#profile", as: "profile"
 
   resources :venues do
     resources :reviews, only: [ :new, :create ]

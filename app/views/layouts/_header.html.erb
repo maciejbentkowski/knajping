@@ -28,7 +28,7 @@
                     </button>
                     <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
                       <li class="hover:bg-gray-100 rounded-lg">
-                        Profil
+                        <%=link_to "Profil", profile_path%>
                       </li>
                       <% if (current_user.role == "owner")%>
                         <li class="hover:bg-gray-100 rounded-lg">

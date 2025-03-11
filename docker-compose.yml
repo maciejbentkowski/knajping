@@ -27,7 +27,7 @@ services:
       - bundle_cache:/bundle
       - knajping_storage:/rails/storage
       - ./config/master.key:/rails/config/master.key:ro
-    command: sh -c "bundle install && bundle exec rails db:migrate && bundle exec rails db:test:prepare && ./bin/rails server -b 0.0.0.0 -p 3000"
+    command: sh -c "bundle install && bundle exec rails db:migrate && bundle exec rails db:test:prepare && ./bin/dev"
     stdin_open: true
     tty: true
 
