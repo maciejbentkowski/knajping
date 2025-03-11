@@ -89,6 +89,11 @@ venue_count.times do |i|
   venue = Venue.create!(
     name: Faker::Restaurant.name,
     is_activate: [ true, false ].sample,
+    address: Faker::Address.street_address,
+    city: "Warszawa",
+    postal_code: "01-910",
+    latitude: rand(52.18..52.31),
+    longitude: rand(20.87..21.08),
     user_id: owners.sample.id
   )
 
