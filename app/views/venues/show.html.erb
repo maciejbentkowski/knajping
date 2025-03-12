@@ -11,7 +11,9 @@
       </div>
       <div class="mt-2 flex divide-x-2">
         <div class="text-sm ">
-          Categories
+          <% @venue.main_types.each do |category| %>
+            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full"><%= category.name %></span>
+          <% end %>
         </div>
       </div>
     </div>

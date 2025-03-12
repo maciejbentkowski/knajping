@@ -91,9 +91,9 @@ class Venue < ApplicationRecord
         [ address, city, postal_code ].compact.join(", ")
       end
 
-      def abbreviated_address
-        [ city ].compact.join(", ")
-      end
+    def abbreviated_address
+        [ city, address ].compact.join(", ")
+    end
 
     private
 
