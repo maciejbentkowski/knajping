@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/assets/tailwindcss', to: redirect('/assets/tailwind')
+
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
