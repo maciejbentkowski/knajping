@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
 .pagy {
   @apply flex space-x-1 font-semibold text-sm text-gray-500;
   a:not(.gap) {
