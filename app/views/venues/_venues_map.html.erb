@@ -1,0 +1,12 @@
+<!-- app/views/venues/_venues_map.html.erb -->
+<% if venues.any? { |v| v.latitude.present? && v.longitude.present? } %>
+  <div class="h-full w-full" data-controller="map" 
+    data-map-markers-value="<%= venues.select { |v| v.latitude.present? && v.longitude.present? }
+                                   .map { |v| { latitude: v.latitude, longitude: v.longitude, name: v.name } }
+                                   .to_json %>">
+  </div>
+<% else %>
+  <div class="flex items-center justify-center h-full">
+    <p class="text-gray-500">No venues with location data available</p>
+  </div>
+<% end %>

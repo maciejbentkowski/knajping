@@ -24,22 +24,19 @@
   </div>
   <!-- Results Section -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-    <div class="block lg:grid lg:grid-cols-12 gap-6">
-      <!-- Venues List -->
-      <div class="col-span-12 lg:col-span-6">
-        <%= turbo_frame_tag "search-results" do %>
+    <%= turbo_frame_tag "search-results" do %>
+      <div class="block lg:grid lg:grid-cols-12 gap-6">
+        <!-- Venues List -->
+        <div class="col-span-12 lg:col-span-6">
           <%= render partial: "venues/venues_list", locals: {venues: @venues} %>
-        <% end %>
-      </div>
-      <!-- Map Section -->
-      <div class="hidden lg:block col-span-6 bg-white shadow-md rounded-lg overflow-hidden sticky top-4 h-[calc(100vh-120px)]">
-        <div class="h-full flex items-center justify-center bg-gray-100">
-          <div class="text-center">
-            <i class="fas fa-map-marked-alt text-indigo-300 text-5xl mb-4"></i>
-            <p class="text-gray-600">Map view of venues will appear here</p>
+        </div>
+        <!-- Map Section -->
+        <div class="hidden lg:block col-span-6 bg-white shadow-md rounded-lg overflow-hidden sticky top-4 h-[calc(100vh-120px)]">
+          <div class="h-full flex items-center justify-center bg-gray-100">
+            <%= render partial: "venues/venues_map", locals: {venues: @venues} %>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
