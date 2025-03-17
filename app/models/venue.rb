@@ -23,6 +23,7 @@ class Venue < ApplicationRecord
         obj.postal_code_changed?
     }
 
+
     def self.search(params)
         params[:query].blank? ? all : where(
             "lower(name) LIKE ?", "%#{sanitize_sql_like((params[:query]).downcase)}%"

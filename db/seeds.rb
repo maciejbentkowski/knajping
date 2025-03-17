@@ -132,4 +132,6 @@ reviews.each do |review_data|
 end
 puts "Created #{Review.count} Reviews with Ratings"
 
+Venue.find_each(&:update_avg_rating)
+puts "Updated all venue average ratings"
 puts "Seed completed successfully!"
