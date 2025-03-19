@@ -41,7 +41,7 @@ RSpec.describe Review, type: :model do
   describe 'avg_rating' do
     context 'when all ratings are 5' do
       let(:review) { create(:review, :with_rating_five) }
-      
+
       it 'has all individual ratings equal to 5' do
         expect(review.rating.atmosphere_rating).to eq(5)
         expect(review.rating.availability_rating).to eq(5)

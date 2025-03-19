@@ -11,7 +11,7 @@ class Review < ApplicationRecord
 
     scope :recent, -> { order(created_at: :desc).limit(3) }
 
-    after_commit :update_venue_avg_rating, on: [ :create, :update, :destroy]
+    after_commit :update_venue_avg_rating, on: [ :create, :update, :destroy ]
 
     def rating_dictionary
         rating_dictionary = {}
