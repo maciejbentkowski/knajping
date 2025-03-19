@@ -8,6 +8,16 @@ FactoryBot.define do
     value_rating { 4 }
     association :review
 
+    trait :rating_with_5 do
+      atmosphere_rating { 5 }
+      availability_rating { 5 }
+      quality_rating { 5 }
+      service_rating { 5 }
+      uniqueness_rating { 5 }
+      value_rating { 5 }
+      association :review
+    end
+
     trait :random do
       atmosphere_rating { rand(1..6) }
       availability_rating { rand(1..6) }
