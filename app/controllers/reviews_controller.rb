@@ -1,6 +1,9 @@
 class ReviewsController < ApplicationController
     load_and_authorize_resource
 
+    def index
+        @reviews = Review.all.includes(:venue, :user, :rating, user: :avatar_attachment)
+    end
     def show
         @review = Review.find(params[:id])
     end
