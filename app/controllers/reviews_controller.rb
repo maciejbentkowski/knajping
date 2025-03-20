@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     load_and_authorize_resource
 
     def index
-        @reviews = Review.all.includes(:venue, :user, :rating, user: :avatar_attachment)
+        @reviews = Review.with_active_venue.includes(:venue, :user, :rating, user: :avatar_attachment)
         @pagy, @reviews = pagy(@reviews, limit: 9)
     end
     def show

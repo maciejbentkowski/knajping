@@ -10,7 +10,7 @@ class Review < ApplicationRecord
     validates :content, presence: true
 
     scope :recent, -> { order(created_at: :desc).limit(3) }
-
+    scope :with_active_venue, -> { joins(:venue).where(venues: { is_activate: true }) }
     after_commit :update_venue_avg_rating, on: [ :create, :update, :destroy ]
 
     def rating_dictionary
