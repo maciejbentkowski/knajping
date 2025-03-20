@@ -6,7 +6,7 @@ class VenuesController < ApplicationController
     def index
         @venues = Venue.active.includes(:reviews, :primary_photo_attachment).includes(venue_venue_types: :venue_type).search(params)
 
-        @pagy, @venues = pagy(@venues)
+        @pagy, @venues = pagy(@venues, limit: 8)
     end
 
     def show

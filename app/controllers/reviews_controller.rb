@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
     def index
         @reviews = Review.all.includes(:venue, :user, :rating, user: :avatar_attachment)
+        @pagy, @reviews = pagy(@reviews, limit: 9)
     end
     def show
         @review = Review.find(params[:id])
