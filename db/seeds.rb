@@ -111,7 +111,6 @@ review_count = 150
 
 review_count.times do
   reviews << {
-    title: Faker::Restaurant.name,
     content: Faker::Restaurant.review,
     venue_id: venues.sample.id,
     user_id: reviewers.sample.id

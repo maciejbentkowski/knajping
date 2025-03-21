@@ -55,7 +55,6 @@ class ReviewsController < ApplicationController
 
     def review_params
         params.require(:review).permit(
-          :title,
           :content,
           rating_attributes: [
             :atmosphere_rating,
