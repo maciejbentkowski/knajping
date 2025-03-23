@@ -8,8 +8,14 @@ class Review < ApplicationRecord
     validates_associated :rating
     validates :content, presence: true
 
-    scope :recent, -> { order(created_at: :desc).limit(3) }
+    scope :recent_3, -> { order(created_at: :desc).limit(3) }
     scope :with_active_venue, -> { joins(:venue).where(venues: { is_activate: true }) }
+
+    scope :all_reviews, -> { order(created_at: :desc) }
+    scope :highest_rated_ordered_desc, -> { order(avg_rating: :desc) }
+    scope :lowest_rated_ordered_desc, -> { order(avg_rating: :asc) }
+    scope :recent_ordered_desc, -> { order(created_at: :desc) }
+
     after_commit :update_venue_avg_rating, on: [ :create, :update, :destroy ]
 
     def rating_dictionary
@@ -28,6 +34,19 @@ class Review < ApplicationRecord
         return 0 unless rating
         rating.avg_rating
     end
+
+    def self.filter_by(filter_param)
+        case filter_param
+        when 'highest_rated'
+          highest_rated_ordered_desc
+        when 'lowest_rated'
+          lowest_rated_ordered_desc
+        when 'most_recent'
+          recent_ordered_desc
+        else
+          all_reviews
+        end
+      end
 
     private
 
