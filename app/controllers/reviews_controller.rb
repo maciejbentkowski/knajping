@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     load_and_authorize_resource
 
     def index
-        @filter = params[:filter] || 'most_recent'
+        @filter = params[:filter] || "most_recent"
         @reviews = Review.with_active_venue.includes(:venue, :user, :rating, user: :avatar_attachment).filter_by(@filter)
         @pagy, @reviews = pagy(@reviews, limit: 9)
     end

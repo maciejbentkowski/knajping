@@ -37,11 +37,11 @@ class Review < ApplicationRecord
 
     def self.filter_by(filter_param)
         case filter_param
-        when 'highest_rated'
+        when "highest_rated"
           highest_rated_ordered_desc
-        when 'lowest_rated'
+        when "lowest_rated"
           lowest_rated_ordered_desc
-        when 'most_recent'
+        when "most_recent"
           recent_ordered_desc
         else
           all_reviews
