@@ -41,7 +41,7 @@
                 <div class="h-2 bg-indigo-600"></div>
                 <div class="p-6 flex-grow">
                   <h2 class="text-2xl font-bold text-gray-900 mb-4 hover:text-indigo-600">
-                    <%=link_to review.venue.name, venue_path(review.venue)%>
+                    <%=link_to review.venue.name, venue_path(review.venue), data: {turbo_frame: "_top"}%>
                   </h2>
                   <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,7 +78,7 @@
                         </p>
                       </div>
                     </div>
-                    <%= link_to "Read", review_path(review), class: "inline-flex items-center px-3 py-1 border border-transparent rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" %>
+                    <%= link_to "Read", review_path(review), data: {turbo_frame: "_top"}, class: "inline-flex items-center px-3 py-1 border border-transparent rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" %>
                   </div>
                 </div>
               </div>

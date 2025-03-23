@@ -12,7 +12,6 @@ class Venue < ApplicationRecord
 
     scope :active, -> { where(is_activate: true) }
     scope :inactive, -> { where(is_activate: false) }
-    scope :recent, -> { active.order(created_at: :desc).limit(5) }
     scope :featured_venues, -> { active.where(avg_rating:  4..).includes(:primary_photo_attachment, venue_venue_types: :venue_type).sample(3) }
 
     has_one_attached :primary_photo
