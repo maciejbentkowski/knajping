@@ -27,12 +27,12 @@ RSpec.describe Review, type: :model do
       let!(:new_review) { create(:review, created_at: 1.day.ago) }
 
       it 'returns reviews in descending order by creation date' do
-        expect(Review.recent.first).to eq(new_review)
+        expect(Review.recent_3.first).to eq(new_review)
       end
 
       it 'limits the result to 3 reviews' do
         create_list(:review, 15)
-        expect(Review.recent.count).to eq(3)
+        expect(Review.recent_3.count).to eq(3)
       end
     end
   end
