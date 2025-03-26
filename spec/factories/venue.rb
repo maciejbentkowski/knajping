@@ -9,5 +9,4 @@ FactoryBot.define do
     latitude { rand(52.18..52.31) }
     longitude { rand(20.87..21.08) }
   end
-   
 end
