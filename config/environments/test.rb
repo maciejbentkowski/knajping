@@ -51,3 +51,12 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 end
+Geocoder.configure(
+  lookup: :test,
+  always_raise: [
+    Geocoder::OverQueryLimitError,
+    Geocoder::RequestDenied,
+    Geocoder::InvalidRequest,
+    Geocoder::InvalidApiKey
+  ]
+)
