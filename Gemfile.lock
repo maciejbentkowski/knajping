@@ -94,10 +94,6 @@ GEM
     connection_pool (2.5.0)
     crass (1.0.6)
     csv (3.3.3)
-    database_cleaner-active_record (2.2.0)
-      activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.1)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -170,7 +166,7 @@ GEM
       zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
-    logger (1.6.6)
+    logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -309,7 +305,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.2)
-    rubocop (1.75.0)
+    rubocop (1.75.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -434,7 +430,6 @@ DEPENDENCIES
   brakeman
   bullet
   cancancan
-  database_cleaner-active_record
   debug
   devise (~> 4.9)
   factory_bot_rails
