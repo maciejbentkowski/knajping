@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-    before_action :set_venue, only: [ :show, :edit, :update ]
+    before_action :set_venue, only: [ :show, :edit, :update, :destroy ]
     before_action :set_venue_types, only: [ :new, :edit, :create, :update ]
     load_and_authorize_resource
 
@@ -44,6 +44,11 @@ class VenuesController < ApplicationController
       else
         render :edit, status: :unprocessable_entity
       end
+    end
+
+    def destroy
+        @venue.destroy
+        redirect_to venues_path, notice: 'Venue was successfully deleted.'
     end
 
     private
