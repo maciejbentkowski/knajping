@@ -47,9 +47,9 @@ RSpec.describe "Venues", type: :request do
     end
 
     describe "POST /venues" do
-        context "with valid params" do 
+        context "with valid params" do
             let(:user) { create :owner }
-            it "creates a new venue" do 
+            it "creates a new venue" do
                 sign_in(user)
                 params = {
                     venue: {
