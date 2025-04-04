@@ -58,6 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_191023) do
     t.bigint "venue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "count_of_answers", default: 0, null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
     t.index ["venue_id"], name: "index_questions_on_venue_id"
   end

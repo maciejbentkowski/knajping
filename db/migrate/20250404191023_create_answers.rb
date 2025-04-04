@@ -6,5 +6,6 @@ class CreateAnswers < ActiveRecord::Migration[8.0]
       t.belongs_to :user, foreign_key: true
       t.timestamps
     end
+    add_column :questions, :count_of_answers, :integer, default: 0, null: false
   end
 end
