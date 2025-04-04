@@ -1,3 +1,7 @@
+<script
+  src="https://js-de.sentry-cdn.com/78d47b91fe81620315ed7e7b55597421.min.js"
+  crossorigin="anonymous"
+></script>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,6 +21,7 @@
     <%= stylesheet_link_tag :app %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= Sentry.get_trace_propagation_meta.html_safe %>
   </head>
   <body>
     <%=render partial: "layouts/header"%>
