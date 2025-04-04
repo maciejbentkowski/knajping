@@ -70,3 +70,6 @@ gem "pagy", "~> 9.3"
 
 gem "image_processing", ">= 1.2"
 gem "geocoder"
+
+gem "sentry-ruby"
+gem "sentry-rails"
