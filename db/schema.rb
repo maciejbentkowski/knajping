@@ -45,9 +45,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_132633) do
   create_table "questions", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
+    t.bigint "venue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
+    t.index ["venue_id"], name: "index_questions_on_venue_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -125,6 +127,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_132633) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "questions", "users"
+  add_foreign_key "questions", "venues"
   add_foreign_key "ratings", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
