@@ -2,11 +2,14 @@
   <div class=" flex items-end  min-h-64 lg:min-h-96 bg-slate-500 py-5 px-15 md:px-40 lg:px-50 xl:px-60 ">
     <div class=" ">
       <h3 class="text-2xl font-bold md:text-3xl lg:text-4xl"><%= @venue.name %></h3>
-      <div class="text-xs md:text-lg lg:text-xl">
+      <div class="flex items-center ">
         <div data-controller="rating-display" 
           data-rating-display-rating-value="<%= @venue.avg_rating || 0 %>" 
           data-rating-display-max-stars-value="6">
-          <div data-rating-display-target="starContainer" class="flex text-yellow-400 text-sm"></div>
+          <div class="flex gap-1 ">
+            <div data-rating-display-target="starContainer" class="content-center text-yellow-400 text-md"></div>
+            <div data-rating-display-target="ratingValue"></div>
+          </div>
         </div>
       </div>
       <div class="mt-2 flex divide-x-2">

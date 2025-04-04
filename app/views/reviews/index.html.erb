@@ -51,13 +51,13 @@
                   </div>
                   <div class="flex items-center mb-4">
                     <div data-controller="rating-display" 
-                         data-rating-display-rating-value="<%= review.avg_rating || 0 %>" 
-                         data-rating-display-max-stars-value="6">
-                      <div data-rating-display-target="starContainer" class="flex text-yellow-400 text-sm"></div>
+                        data-rating-display-rating-value="<%= review.avg_rating || 0 %>" 
+                        data-rating-display-max-stars-value="6">
+                      <div class="flex gap-1 ">
+                        <div data-rating-display-target="starContainer" class="content-center text-yellow-400 text-md"></div>
+                        <div data-rating-display-target="ratingValue"></div>
+                      </div>
                     </div>
-                    <span class="ml-2 text-sm text-gray-600">
-                      <%= review.avg_rating&.round(1) || "Not rated" %>
-                    </span>
                   </div>
                   <div class="text-base text-gray-700 mb-6">
                     <%= truncate(review.content, length: 150) %>

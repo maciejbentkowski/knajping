@@ -30,18 +30,6 @@
               </p>
             </div>
           </div>
-          <div class="mt-8 sm:mt-0 flex items-center">
-            <div class="flex items-center">
-              <div data-controller="rating-display" 
-          data-rating-display-rating-value="<%= @review.avg_rating || 0 %>" 
-          data-rating-display-max-stars-value="6">
-                <div data-rating-display-target="starContainer" class="flex text-yellow-400 text-lg"></div>
-              </div>
-              <span class="ml-2 text-lg text-indigo-200">
-                <%= @review.avg_rating&.round(1) || "Not rated" %>
-              </span>
-            </div>
-          </div>
         </div>
       </div>
       <div class="flex flex-wrap text-center justify-evenly mt-2 ">
@@ -71,15 +59,15 @@
           <h3 class="text-3xl font-medium text-gray-900">
             <%= @review.venue.name %>
           </h3>
-          <div class="flex items-center">
+          <div class="flex items-center my-2">
             <div data-controller="rating-display" 
           data-rating-display-rating-value="<%= @review.avg_rating || 0 %>" 
           data-rating-display-max-stars-value="6">
-              <div data-rating-display-target="starContainer" class="flex text-yellow-400 text-lg"></div>
+              <div class="flex gap-1 ">
+                <div data-rating-display-target="starContainer" class="content-center text-yellow-400 text-md"></div>
+                <div data-rating-display-target="ratingValue"></div>
+              </div>
             </div>
-            <span class="ml-2 text-lg text-indigo-200">
-              <%= @review.venue.avg_rating&.round(1) || "Not rated" %> in <%= @review.venue.reviews.count%> reviews
-            </span>
           </div>
           <div class="flex flex-wrap gap-2 mt-3">
             <% @review.venue.main_types.each do |category| %>
