@@ -14,7 +14,7 @@ RSpec.describe AnswerAbility do
 
   context 'when user is not logged in' do
     include_examples "can read all answers"
-    
+
     it { is_expected.not_to be_able_to(:create, Answer) }
     it { is_expected.not_to be_able_to(:update, other_user_answer) }
     it { is_expected.not_to be_able_to(:destroy, other_user_answer) }
