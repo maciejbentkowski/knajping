@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :venues, dependent: :nullify
   has_many :reviews, dependent: :nullify
   has_many :questions, dependent: :nullify
+  has_many :answers, dependent: :nullify
 
   has_one_attached :avatar
 
