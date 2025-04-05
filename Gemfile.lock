@@ -441,7 +441,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   geocoder
-  image_processing (>= 1.2)
+  image_processing (~> 1.2)
   importmap-rails (~> 2.1)
   jbuilder
   kamal
