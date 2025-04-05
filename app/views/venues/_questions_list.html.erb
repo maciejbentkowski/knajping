@@ -1,0 +1,10 @@
+<% questions.each do |question| %>
+  <%= turbo_frame_tag dom_id(question) do %>
+    <div>
+      <%= question.body%>
+      <%= link_to "edit", edit_question_path(question)%>
+      <%= button_to "Destroy", destroy_question_path(question)%>
+    </div>
+    <%= render partial: "answers_list", locals: {answers: question.answers}%>
+  <% end%>
+<% end %>

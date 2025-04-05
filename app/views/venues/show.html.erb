@@ -70,5 +70,10 @@
     <div class="my-6">
       <%=render partial: "reviews_list", locals:{reviews: @venue_reviews}%>
     </div>
+    <div class="my-6">
+      <turbo-frame id="questions">
+        <%=render partial: "questions_list", locals:{questions: @venue_questions}%>
+      </turbo-frame>
+    </div>
   </div>
 </div>
