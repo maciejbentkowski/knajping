@@ -1,3 +1,29 @@
 <% answers.each do |answer|%>
-  <%= answer.body%>
+  <div class="ml-4">
+    <div class="my-1 text-sm flex gap-1">
+      <div class="h-8 w-8 max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none">
+        <%= avatar(answer.user)%>
+      </div>
+      <div class="content-center">
+        <%=answer.user.username%> :
+      </div>
+    </div>
+    <%= turbo_frame_tag dom_id(answer) do %>
+      <div class="flex justify-between p-1 rounded-md">
+        <div class="w-full ml-2 text-md min-h-10">
+          <%= answer.body%>
+        </div>
+        <div class="flex gap-2 ml-2 place-items-center">
+          <% if current_user != answer.user%>
+            <div>
+              Edit       
+            </div>
+            <div>
+              Destroy
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end%>

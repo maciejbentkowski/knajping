@@ -1,10 +1,30 @@
 <% questions.each do |question| %>
-  <%= turbo_frame_tag dom_id(question) do %>
-    <div>
-      <%= question.body%>
-      <%= link_to "edit", edit_question_path(question)%>
-      <%= button_to "Destroy", destroy_question_path(question)%>
+  <div class="my-4 ">
+    <div class="my-1 text-sm flex gap-1">
+      <div class="h-8 w-8 max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none">
+        <%= avatar(question.user)%>
+      </div>
+      <div class="content-center">
+        <%=question.user.username%> :
+      </div>
     </div>
+    <%= turbo_frame_tag dom_id(question) do %>
+      <div class="flex justify-between p-1 rounded-md">
+        <div class="w-full ml-2 text-md min-h-10">
+          <%= question.body%>
+        </div>
+        <div class="flex gap-2 ml-2 place-items-center">
+          <% if current_user != question.user%>
+            <div>
+              <%= link_to "Edit", edit_question_path(question), class:"block bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded-md"%>
+            </div>
+            <div>
+              <%= button_to "Destroy", question_path(question), method: :delete, data: {turbo_confirm: "czy jesteś pewny?"}, class:" bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded-md"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <%= render partial: "answers_list", locals: {answers: question.answers}%>
-  <% end%>
-<% end %>
+  </div>
+<% end%>
