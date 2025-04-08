@@ -21,59 +21,64 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col mx-15 md:mx-40 lg:mx-50 xl:mx-60  max-w-4xl  ">
-    <div class="mt-2">
-      <div class="flex">
-        <%= link_to "Oceń", new_venue_review_path(@venue), class:"inline-block mx-1 px-3 py-1 border rounded-md"%>
+  <div class="flex flex-col mx-10 md:mx-15 lg:mx-20 xl:mx-30   ">
+    <div class="my-2">
+      <div class="flex gap-2">
+        <%= link_to "Oceń", new_venue_review_path(@venue), class:"bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md"%>
         <div class="inline-block mx-1 px-2 py-1 border rounded-md">
           Zapytaj
         </div>
         <div class="inline-block mx-1 px-2 py-1 border rounded-md">
           Zdjecia
         </div>
+        <% if current_user == @venue.user%>
+          <%= link_to 'Edytuj', edit_venue_path(@venue), class: "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md" %>
+        <%end %>
       </div>
     </div>
     <%# app/views/venues/show.html.erb %>
-    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div class="px-4 py-5 sm:px-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900"><%= @venue.name %></h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= @venue.full_address %></p>
-      </div>
-      <div class="border-t border-gray-200">
-        <dl>
-          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">Street Address</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.address %></dd>
-          </div>
-          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">City</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.city %></dd>
-          </div>
-          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">Postal Code</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.postal_code %></dd>
-          </div>
-        </dl>
-      </div>
-      <% if @venue.latitude && @venue.longitude %>
-        <div class="h-96 w-full" data-controller="map" 
+    <div class="flex lg:gap-10 flex-col lg:flex-row w-full justify-around">
+      <%# address information %>
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg block lg:w-1/2 w-full">
+        <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900"><%= @venue.name %></h3>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= @venue.full_address %></p>
+        </div>
+        <div class="border-t border-gray-200">
+          <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Street Address</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.address %></dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">City</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.city %></dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Postal Code</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @venue.postal_code %></dd>
+            </div>
+          </dl>
+        </div>
+        <% if @venue.latitude && @venue.longitude %>
+          <div class="h-96 w-full" data-controller="map" 
          data-map-latitude-value="<%= @venue.latitude %>" 
          data-map-longitude-value="<%= @venue.longitude %>"
          data-map-name-value="<%= @venue.name %>">
+          </div>
+        <% end %>
+      </div>
+      <div class="my-6 p-4 lg:w-1/2 w-full">
+        <div class="my-2 pb-2 text-2xl border-b">
+          Pytania:
         </div>
-      <% end %>
-    </div>
-    <div class="mt-4 flex gap-2">
-      <%= link_to 'Edit', edit_venue_path(@venue), class: "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md" %>
-      <%= link_to 'Back', venues_path, class: "bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md" %>
+        <turbo-frame id="questions" class="divide-y">
+          <%=render partial: "questions_list", locals:{questions: @venue_questions}%>
+        </turbo-frame>
+      </div>
     </div>
     <div class="my-6">
       <%=render partial: "reviews_list", locals:{reviews: @venue_reviews}%>
-    </div>
-    <div class="my-6">
-      <turbo-frame id="questions" class="divide-y">
-        <%=render partial: "questions_list", locals:{questions: @venue_questions}%>
-      </turbo-frame>
     </div>
   </div>
 </div>
