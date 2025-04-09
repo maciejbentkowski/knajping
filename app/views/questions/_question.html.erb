@@ -14,7 +14,7 @@
           <%= question.body%>
         </div>
         <div class="flex gap-2 ml-2 place-items-center">
-          <% if current_user == question.user%>
+          <% if (current_user == question.user) || (current_user.role == "admin")%>
             <div>
               <%= link_to "Edit", edit_question_path(question), class:"block bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded-md"%>
             </div>
@@ -32,6 +32,6 @@
         <%=time_ago_in_words(question.updated_at)%> ago
       </div>
     <% end %>
-    <%= render partial: "answers_list", locals: {answers: question.answers}%>
+    <%= render "answers/answers_list", answers: question.answers%>
   </div>
 <% end %>

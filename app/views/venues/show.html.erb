@@ -36,8 +36,7 @@
         <%end %>
       </div>
     </div>
-    <%# app/views/venues/show.html.erb %>
-    <div class="flex lg:gap-10 flex-col lg:flex-row w-full justify-around">
+    <div class="flex lg:gap-10 flex-col lg:flex-row w-full justify-around ">
       <%# address information %>
       <div class="bg-white shadow overflow-hidden sm:rounded-lg block lg:w-1/2 w-full">
         <div class="px-4 py-5 sm:px-6">
@@ -72,8 +71,8 @@
         <div class="my-2 pb-2 text-2xl border-b">
           Pytania:
         </div>
-        <turbo-frame id="questions" class="divide-y">
-          <%= render '/questions/questions_list', questions: @venue_questions %>
+        <turbo-frame id="questions" class="block overflow-y-auto max-h-140 ">
+          <%= render 'questions/questions_list', questions: @venue_questions %>
         </turbo-frame>
       </div>
     </div>
