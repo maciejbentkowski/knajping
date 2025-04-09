@@ -13,8 +13,7 @@ class VenuesController < ApplicationController
         @venue_reviews = @venue.reviews.includes(
           :rating,
           :user,
-          { user: :avatar_attachment }
-        )
+          { user: :avatar_attachment })
 
         @venue_questions = @venue.questions.includes(
           :user,

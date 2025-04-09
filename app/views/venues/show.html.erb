@@ -73,7 +73,7 @@
           Pytania:
         </div>
         <turbo-frame id="questions" class="divide-y">
-          <%=render partial: "questions_list", locals:{questions: @venue_questions}%>
+          <%= render '/questions/questions_list', questions: @venue_questions %>
         </turbo-frame>
       </div>
     </div>
