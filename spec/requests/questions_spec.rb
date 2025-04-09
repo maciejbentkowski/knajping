@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Questions", type: :request do
-
     describe "DELETE /questions/:id" do
         context "when user owns the question" do
         let(:user) { create(:user) }
@@ -16,5 +15,3 @@ RSpec.describe "Questions", type: :request do
     end
 end
 end
-
-

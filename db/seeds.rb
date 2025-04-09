@@ -148,7 +148,7 @@ puts "Creating Questions and Answers..."
 
 # Get all venues and users to reference
 venues = Venue.where(is_activate: true).to_a
-users = User.where(role: [:reviewer, nil]).to_a
+users = User.where(role: [ :reviewer, nil ]).to_a
 total_venues = venues.count
 
 # Common questions about venues
@@ -331,23 +331,23 @@ question_count.times do
   # Select a random venue and user
   venue = venues.sample
   user = users.sample
-  
+
   # Select a random question template
   template = question_templates.sample
   question_text = template % { venue_name: venue.name }
-  
+
   # Create the question
   question = Question.create!(
     body: question_text,
     user: user,
     venue: venue
   )
-  
+
   questions_created += 1
-  
+
   # Determine how many answers this question should have (0-3)
   answer_count = rand(0..3)
-  
+
   if answer_count > 0
     # Find the answer type based on question content
     answer_type = nil
@@ -357,13 +357,13 @@ question_count.times do
         break
       end
     end
-    
+
     # Default to random answer type if no match found
     answer_type ||= answer_templates.keys.sample
-    
+
     # Get potential answers for this type
     potential_answers = answer_templates[answer_type]
-    
+
     # Create the answers
     answerers = users.shuffle.take(answer_count)
     answerers.each do |answerer|

@@ -10,9 +10,18 @@ class VenuesController < ApplicationController
     end
 
     def show
-        @venue_reviews = @venue.reviews.includes(:rating, :user, user: :avatar_attachment)
-        @venue_questions = @venue.questions.includes(:answers, :user, user: :avatar_attachment)
-    end
+        @venue_reviews = @venue.reviews.includes(
+          :rating,
+          :user,
+          { user: :avatar_attachment }
+        )
+
+        @venue_questions = @venue.questions.includes(
+          :user,
+          { user: :avatar_attachment },
+          { answers: [ :user, { user: :avatar_attachment } ] }
+        )
+      end
 
     def new
         @venue = Venue.new()
