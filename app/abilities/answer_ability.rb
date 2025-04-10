@@ -8,10 +8,19 @@ class AnswerAbility
 
       return unless user.present?
 
+      if user.owner?
+        can [ :new, :create ], Answer do |answer|
+          answer.question.venue.user_id == user.id
+        end
+        can [ :edit, :update, :destroy ], Answer do |answer|
+          answer.user_id == user.id
+        end
+      end
+
       if user.reviewer?
         can [ :new, :create ], Answer
-        can [ :edit, :update ], Answer do |question|
-          question.user_id == user.id
+        can [ :edit, :update, :destroy ], Answer do |answer|
+          answer.user_id == user.id
         end
       end
 

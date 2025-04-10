@@ -32,6 +32,7 @@ RSpec.describe AnswerAbility do
       it { is_expected.to be_able_to(:create, Answer) }
       it { is_expected.to be_able_to(:edit, own_answer) }
       it { is_expected.to be_able_to(:update, own_answer) }
+      it { is_expected.to be_able_to(:destroy, own_answer) }
     end
 
     context 'cannot manage others answers' do
@@ -41,11 +42,15 @@ RSpec.describe AnswerAbility do
 
   context 'when user is a owner' do
     let (:user) { create(:owner) }
+    let(:own_answer) { create(:answer, user: user) }
 
     include_examples "can read all answers"
 
-    context 'cannot create and manage answers' do
-      it { is_expected.not_to be_able_to(:create, Answer) }
+    context 'can create and manage answers' do
+      it { is_expected.to be_able_to(:create, Answer) }
+      it { is_expected.to be_able_to(:edit, own_answer) }
+      it { is_expected.to be_able_to(:update, own_answer) }
+      it { is_expected.to be_able_to(:destroy, own_answer) }
     end
 
     context 'cannot manage others answers' do
