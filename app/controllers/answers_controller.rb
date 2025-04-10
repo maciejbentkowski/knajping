@@ -22,15 +22,28 @@ class AnswersController < ApplicationController
         end
     end
 
-    def edit
-
+    def edit    
     end
 
 
     def update
-
-
+        if @answer.update(answer_params)
+            respond_to do |format|
+                format.turbo_stream {
+                    render turbo_stream: turbo_stream.replace(
+                        helpers.dom_id(@answer),
+                        partial: "answers/answer",
+                        locals: { answer: @answer }
+                    )
+                }
+            end
+        else
+            respond_to do |format|
+                format.html { redirect_to venue_path(@answer.question.venue), alert: "Could not create answer" }
+            end
+        end
     end
+
 
     private
     def current_ability
