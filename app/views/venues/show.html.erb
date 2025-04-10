@@ -26,9 +26,6 @@
       <div class="flex gap-2">
         <%= link_to "Oceń", new_venue_review_path(@venue), class:"bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md"%>
         <div class="inline-block mx-1 px-2 py-1 border rounded-md">
-          Zapytaj
-        </div>
-        <div class="inline-block mx-1 px-2 py-1 border rounded-md">
           Zdjecia
         </div>
         <% if current_user == @venue.user%>
