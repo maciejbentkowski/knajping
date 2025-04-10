@@ -1,6 +1,8 @@
-<div class="mt-4">
-  <%=render "answers/form", question: question%>
-</div>
+<% if user_signed_in?%>
+  <div class="mt-4">
+    <%=render "answers/form", question: question%>
+  </div>
+<% end %>
 <div>
   <%= render "answers/answers_list", answers: question.answers%>
 </div>
