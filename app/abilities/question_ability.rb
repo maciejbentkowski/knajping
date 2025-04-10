@@ -10,7 +10,7 @@ class QuestionAbility
 
       if user.reviewer?
         can [ :new, :create ], Question
-        can [ :edit, :update ], Question do |question|
+        can [ :edit, :update, :destroy ], Question do |question|
           question.user_id == user.id
         end
       end

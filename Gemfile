@@ -72,3 +72,5 @@ gem "geocoder"
 
 gem "sentry-ruby"
 gem "sentry-rails"
+
+gem "noticed", "~> 2.6"
