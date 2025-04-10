@@ -16,6 +16,11 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+
+  def admin_or_moderator?
+    %w[admin moderator].include?(role)
+  end
+
   private
 
   def set_default_role
