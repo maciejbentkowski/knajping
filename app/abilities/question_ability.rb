@@ -8,6 +8,11 @@ class QuestionAbility
 
       return unless user.present?
 
+      if user.owner?
+        can [ :new, :create ], Question
+        can [ :edit, :update, :destroy ], Question, user_id: user.id
+      end
+
       if user.reviewer?
         can [ :new, :create ], Question
         can [ :edit, :update, :destroy ], Question do |question|

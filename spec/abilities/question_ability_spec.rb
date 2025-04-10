@@ -32,6 +32,7 @@ RSpec.describe QuestionAbility do
       it { is_expected.to be_able_to(:create, Question) }
       it { is_expected.to be_able_to(:edit, own_question) }
       it { is_expected.to be_able_to(:update, own_question) }
+      it { is_expected.to be_able_to(:destroy, own_question) }
     end
 
     context 'cannot manage others questions' do
@@ -41,11 +42,15 @@ RSpec.describe QuestionAbility do
 
   context 'when user is a owner' do
     let (:user) { create(:owner) }
+    let(:own_question) { create(:question, user: user) }
 
     include_examples "can read all questions"
 
-    context 'cannot create and manage questions' do
-      it { is_expected.not_to be_able_to(:create, Question) }
+    context 'can create and manage own questions' do
+      it { is_expected.to be_able_to(:create, Question) }
+      it { is_expected.to be_able_to(:edit, own_question) }
+      it { is_expected.to be_able_to(:update, own_question) }
+      it { is_expected.to be_able_to(:destroy, own_question) }
     end
 
     context 'cannot manage others questions' do
