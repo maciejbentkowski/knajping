@@ -3,21 +3,21 @@ class AnswersController < ApplicationController
     def create
         @question = Question.find(params[:question_id])
         @answer = @question.answers.new(answer_params.merge(user_id: current_user.id))
-   
+
         if @answer.save
             respond_to do |format|
                 format.turbo_stream {
                     render turbo_stream: turbo_stream.replace(
                         helpers.dom_id(@question),
                         partial: "questions/question",
-                        locals: {question: @question}
+                        locals: { question: @question }
                     )
                 }
                 format.html { redirect_to venue_path(@question.venue) }
             end
         else
             respond_to do |format|
-                format.html { redirect_to venue_path(@venue), alert: "Could not create question"}
+                format.html { redirect_to venue_path(@venue), alert: "Could not create question" }
             end
         end
     end

@@ -4,21 +4,21 @@ class QuestionsController < ApplicationController
     def create
         @venue = Venue.find(params[:venue_id])
         @question = @venue.questions.new(question_params.merge(user_id: current_user.id))
-   
+
         if @question.save
             respond_to do |format|
                 format.turbo_stream {
                     render turbo_stream: turbo_stream.replace(
                         "questions_section",
                         partial: "questions/questions_section",
-                        locals: {questions: @venue.questions}
+                        locals: { questions: @venue.questions }
                     )
                 }
                 format.html { redirect_to venue_path(@question.venue) }
             end
         else
             respond_to do |format|
-                format.html { redirect_to venue_path(@venue), alert: "Could not create question"}
+                format.html { redirect_to venue_path(@venue), alert: "Could not create question" }
             end
         end
     end
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
     def edit
         @question = Question.find(params[:id])
     end
-    
+
 
     def update
         @question = Question.find(params[:id])
@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
                     render turbo_stream: turbo_stream.replace(
                         helpers.dom_id(@question),
                         partial: "questions/question",
-                        locals: {question: @question}
+                        locals: { question: @question }
                     )
                 }
             end

@@ -1,5 +1,8 @@
   <%= turbo_frame_tag "questions_section" do %>
-  <%= render "questions/form", venue: @venue %>
+  <div>
+    Zadaj Pytanie
+    <%= render "questions/form", venue: @venue %>
+  </div>
   <div class="my-2 pb-2 text-2xl border-b">
     Pytania:
   </div>
