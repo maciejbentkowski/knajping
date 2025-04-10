@@ -1,2 +1,17 @@
-<%=turbo_frame_tag "#{dom_id(@question)}_content_edit" do %>
+<%=turbo_frame_tag "#{dom_id(@answer)}_content_edit" do %>
+  <%= form_with model: @answer do |form| %>
+    <div class="flex justify-between bg-amber-100 p-1 rounded-md">
+      <div class="ml-2 w-full text-sm min-h-10 ">
+        <%= form.textarea :body, class:"w-full content-center"%>
+      </div>
+      <div class="flex gap-2 ml-2 place-items-center">
+        <div clsas="">
+          <%= form.submit "Edytuj", class:"block text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded-md"%>
+        </div>
+        <div class="">
+          <%= link_to 'Wróć', :back, class: "block text-xs bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded-md" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
