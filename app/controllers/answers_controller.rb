@@ -44,7 +44,11 @@ class AnswersController < ApplicationController
         end
     end
 
+    def destroy
+        @answer.destroy!
 
+        render turbo_stream: turbo_stream.remove(helpers.dom_id(@answer))
+    end 
     private
     def current_ability
         @current_ability ||= AnswerAbility.new(current_user)
