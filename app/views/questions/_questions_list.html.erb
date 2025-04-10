@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "questions_section" do %>
-  <div>
-    <% questions.each do |question| %>
-      <%= render "questions/question", question: question%>
-    <% end %>
-  </div>
-<% end %>
+<div>
+  <% questions.each do |question| %>
+    <%= render "questions/question", question: question%>
+  <% end %>
+</div>

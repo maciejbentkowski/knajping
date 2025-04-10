@@ -10,7 +10,7 @@
     </div>
     <%= turbo_frame_tag "#{dom_id(question)}_content" do %>
       <div class="flex justify-between py-1 px-3 rounded-md">
-        <div class="w-full ml-2 text-sm min-h-10">
+        <div class="w-full ml-2 text-sm min-h-10 content-center">
           <%= question.body%>
         </div>
         <div class="flex gap-2 ml-2 place-items-center">
@@ -30,6 +30,9 @@
       </div>
       <div class="text-center text-xs border-t border-dashed">
         <%=time_ago_in_words(question.updated_at)%> ago
+      </div>
+      <div>
+        <%=render "answers/form", question: question%>
       </div>
     <% end %>
     <%= render "answers/answers_list", answers: question.answers%>

@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     resources :questions, only: [ :new, :create ]
   end
 
+  resources :questions, except: [ :new, :create ] do
+    resources :answers, only: [ :new, :create]
+  end
+  resources :answers, except: [ :new, :create ]
   resources :reviews, except: [ :new, :create ]
-  resources :questions, except: [ :new, :create ]
-
+  
   get "up" => "rails/health#show", as: :rails_health_check
 end

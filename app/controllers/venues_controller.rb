@@ -19,7 +19,7 @@ class VenuesController < ApplicationController
           :user,
           { user: :avatar_attachment },
           { answers: [ :user, { user: :avatar_attachment } ] }
-        )
+        ).order(updated_at: :desc)
       end
 
     def new

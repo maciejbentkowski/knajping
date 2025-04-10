@@ -1,0 +1,9 @@
+  <%= turbo_frame_tag "questions_section" do %>
+  <%= render "questions/form", venue: @venue %>
+  <div class="my-2 pb-2 text-2xl border-b">
+    Pytania:
+  </div>
+  <div class="block overflow-y-auto max-h-140 ">
+    <%= render 'questions/questions_list', questions: questions%>
+  </div>
+<% end%>

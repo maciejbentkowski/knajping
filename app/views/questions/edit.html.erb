@@ -1,8 +1,8 @@
 <%=turbo_frame_tag "#{dom_id(@question)}_content" do %>
   <%= form_with model: @question do |form| %>
     <div class="flex justify-between bg-amber-100 p-1 rounded-md">
-      <div class="ml-2 w-full text-sm content-center min-h-10 ">
-        <%= form.textarea :body, class:"w-full"%>
+      <div class="ml-2 w-full text-sm min-h-10 ">
+        <%= form.textarea :body, class:"w-full content-center"%>
       </div>
       <div class="flex gap-2 ml-2 place-items-center">
         <div clsas="">
