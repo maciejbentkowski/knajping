@@ -40,6 +40,9 @@ class QuestionsController < ApplicationController
             end
 
         else
+            respond_to do |format|
+                format.html { redirect_to venue_path(@question.venue), alert: "Could not create question" }
+            end
         end
     end
 
