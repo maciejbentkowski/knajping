@@ -47,7 +47,6 @@ class QuestionsController < ApplicationController
     end
 
     def destroy
-        @question = Question.find(params[:id])
         @question.destroy!
 
         render turbo_stream: turbo_stream.remove(helpers.dom_id(@question))
