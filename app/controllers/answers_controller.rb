@@ -22,6 +22,16 @@ class AnswersController < ApplicationController
         end
     end
 
+    def edit
+
+    end
+
+
+    def update
+
+
+    end
+
     private
     def current_ability
         @current_ability ||= AnswerAbility.new(current_user)
