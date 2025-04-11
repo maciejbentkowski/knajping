@@ -1,8 +1,8 @@
 # To deliver this notification:
 #
-# NewQuestionNotifier.with(record: @post, message: "New post").deliver(User.all)
+# QuestionNotifier.with(record: @post, message: "New post").deliver(User.all)
 
-class NewQuestionNotifier < ApplicationNotifier
+class QuestionNotifier < ApplicationNotifier
   # Add your delivery methods
   #
   # deliver_by :email do |config|
