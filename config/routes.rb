@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: "pages#main"
 
   get "profile", to: "pages#profile", as: "profile"
-
+  get "notifications", to: "notifications#index", as: "notifications"
   resources :venues do
     resources :reviews, only: [ :new, :create ]
     resources :questions, only: [ :new, :create ]

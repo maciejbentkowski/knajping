@@ -1,8 +1,4 @@
 <h3>
   Notifications:
 </h3>
-<div>
-  <% @notifications.each do |notification|%>
-    <%=notification%>
-  <% end%>
-</div>
+<%=render "notifications/notifications", notifications: @notifications%>

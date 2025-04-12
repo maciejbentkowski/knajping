@@ -17,9 +17,11 @@
               Cześć, <%=current_user.username%>
             </div>
             <div class="ml-4 flex items-center md:ml-6">
-              <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
-                <i class="fas fa-bell text-xl"></i>
-              </button>
+              <%= link_to notifications_path do%>
+                <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
+                  <i class="fas fa-bell text-xl"></i>
+                </button>
+              <% end %>
               <div class="ml-3 relative">
                 <div>
                   <div data-controller="dropdown" class="">
