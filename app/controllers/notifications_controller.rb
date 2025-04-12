@@ -4,4 +4,12 @@ class NotificationsController < ApplicationController
 
         @notifications = current_user.notifications.includes(:event)
     end
+
+
+    def destroy
+
+        @notification = current_user.notifications.find(params[:id])
+        @notification.destroy!
+        render turbo_stream: turbo_stream.remove(helpers.dom_id(@notification))
+    end
 end

@@ -16,7 +16,10 @@ class Question < ApplicationRecord
     def send_user_notification
         return if user == venue.user
         message = "#{self.user.username} just asked a question in #{self.venue.name}"
-        QuestionNotifier.with(message: message).deliver(venue.user)
-
+        QuestionNotifier.with(
+            message: message, 
+            record: self,
+            venue: self.venue  # Pass venue directly
+          ).deliver(venue.user)
     end
 end
