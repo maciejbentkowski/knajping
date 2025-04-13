@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get "profile", to: "pages#profile", as: "profile"
 
+  #notifications
+  get "notifications", to: "notifications#index", as: "notifications"
+  delete '/notifications/:id', to: 'notifications#destroy', as: "notification"
+
   resources :venues do
     resources :reviews, only: [ :new, :create ]
     resources :questions, only: [ :new, :create ]

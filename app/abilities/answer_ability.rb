@@ -8,12 +8,16 @@ class AnswerAbility
 
       return unless user.present?
 
+<<<<<<< HEAD
       if user.owner?
         can [ :new, :create ], Answer
         can [ :edit, :update, :destroy ], Answer, user_id: user.id
       end
 
       if user.reviewer?
+=======
+      if user.reviewer? || user.owner?
+>>>>>>> notifications
         can [ :new, :create ], Answer
         can [ :edit, :update, :destroy ], Answer do |answer|
           answer.user_id == user.id
