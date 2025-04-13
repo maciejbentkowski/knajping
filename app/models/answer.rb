@@ -20,6 +20,6 @@ class Answer < ApplicationRecord
             message: message,
             record: self,
             venue: self.question.venue
-          ).deliver(self.quesution.user)
+          ).deliver(self.question.user)
     end
 end
