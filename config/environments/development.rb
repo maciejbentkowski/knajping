@@ -81,4 +81,6 @@ Rails.application.configure do
     Bullet.stacktrace_includes = [ "your_gem", "your_middleware" ]
     Bullet.stacktrace_excludes = [ "their_gem", "their_middleware", [ "my_file.rb", "my_method" ], [ "my_file.rb", 16..20 ] ]
   end
+
+  config.web_console.permissions = '192.168.65.1'
 end

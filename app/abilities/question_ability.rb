@@ -8,7 +8,7 @@ class QuestionAbility
 
       return unless user.present?
 
-      if user.reviewer?
+      if user.reviewer? || user.owner?
         can [ :new, :create ], Question
         can [ :edit, :update, :destroy ], Question do |question|
           question.user_id == user.id

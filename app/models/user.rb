@@ -9,10 +9,10 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
-  has_many :venues, dependent: :nullify
-  has_many :reviews, dependent: :nullify
-  has_many :questions, dependent: :nullify
-  has_many :answers, dependent: :nullify
+  has_many :venues, inverse_of: :user, dependent: :nullify
+  has_many :reviews, inverse_of: :user, dependent: :nullify
+  has_many :questions, inverse_of: :user, dependent: :nullify
+  has_many :answers, inverse_of: :user, dependent: :nullify
 
   has_one_attached :avatar
 
