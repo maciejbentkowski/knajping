@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
     belongs_to :question, inverse_of: :answers, counter_cache: :count_of_answers
-    belongs_to :user, inverse_of: :answers
+    belongs_to :user
 
     validates :body, presence: true
 

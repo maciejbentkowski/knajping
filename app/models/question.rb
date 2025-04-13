@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-    belongs_to :user, inverse_of: :questions
+    belongs_to :user
     belongs_to :venue, inverse_of: :questions
     has_many :answers, -> { order(created_at: :desc) }, inverse_of: :question, dependent: :destroy
 
