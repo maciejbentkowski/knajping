@@ -17,7 +17,7 @@ class Question < ApplicationRecord
         return if user == venue.user
         message = "#{self.user.username} just asked a question in #{self.venue.name}"
         QuestionNotifier.with(
-            message: message, 
+            message: message,
             record: self,
             venue: self.venue
           ).deliver(venue.user)

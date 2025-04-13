@@ -3,7 +3,6 @@
 # QuestionNotifier.with(record: @post, message: "New post").deliver(User.all)
 
 class QuestionNotifier < ApplicationNotifier
-
   def record
     params[:record]
   end

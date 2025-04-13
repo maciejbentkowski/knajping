@@ -17,7 +17,7 @@ class Answer < ApplicationRecord
         return if user == question.user
         message = "#{self.user.username} just answer your question in #{self.question.venue.name}"
         AnswerNotifier.with(
-            message: message, 
+            message: message,
             record: self,
             venue: self.question.venue
           ).deliver(self.quesution.user)

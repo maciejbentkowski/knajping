@@ -23,4 +23,3 @@ class AnswerNotifier < ApplicationNotifier
     end
   end
 end
-
