@@ -15,11 +15,14 @@ class Answer < ApplicationRecord
 
     def send_user_notification
         return if user == question.user
-        message = "#{self.user.username} just answer your question in #{self.question.venue.name}"
-        AnswerNotifier.with(
-            message: message,
-            record: self,
-            venue: self.question.venue
+
+        notification = AnswerNotifier.with(
+            record: self
           ).deliver(self.question.user)
+
+        broadcast_prepend_to "notifications_#{question.user.id}",
+                        target: "notifications_#{question.user.id}",
+                        partial: "notifications/notification",
+                        locals: {notification: notification}
     end
 end

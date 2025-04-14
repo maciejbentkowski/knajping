@@ -12,7 +12,7 @@ class NewQuestionNotifier < ApplicationNotifier
   end
 
   def message
-    "Nowe pytanie od #{question&.user&.username} w obiekcie #{venue.name}!"
+    "Nowe pytanie od #{question&.user&.username} w obiekcie "
   end
 
   def venue
@@ -40,7 +40,7 @@ class NewQuestionNotifier < ApplicationNotifier
       question&.venue
     end
     def message
-      "Nowe pytanie od #{question&.user&.username} w obiekcie #{venue.name}!"
+      "Nowe pytanie od #{question&.user&.username} w obiekcie "
     end
     def path
       if venue.present?

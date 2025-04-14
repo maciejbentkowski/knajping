@@ -14,11 +14,10 @@ class Question < ApplicationRecord
 
 
     def send_user_notification
-        Rails.logger.debug "DEBUG Model: self before deliver: #{self.inspect}, persisted?: #{self.persisted?}, id: #{self.id}, user:#{self.venue.user.id}"
+        return if user == venue.user
         notification = NewQuestionNotifier.with(
             record: self
         ).deliver(self.venue.user)
-        Rails.logger.debug "DEBUG Model: notification after deliver: #{notification} "
         broadcast_prepend_to "notifications_#{venue.user.id}",
                           target: "notifications_#{venue.user.id}",
                           partial: "notifications/notification",
