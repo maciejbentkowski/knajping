@@ -1,7 +1,12 @@
-<div >
-  <ul>
-    <% notifications.each do |notification|%>
-      <%=render "notifications/notification", notification: notification%>
+<% if current_user%>
+  <div >
+    <%= turbo_stream_from "notifications_#{current_user.id}" %>
+    <%=turbo_frame_tag "notifications_#{current_user.id}" do%>
+      <ul class="divide-y">
+        <% notifications.each do |notification|%>
+          <%=render "notifications/notification", notification: notification %>
+        <%end%>
+      </ul>
     <% end%>
-  </ul>
-</div>
+  </div>
+<% end %>

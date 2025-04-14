@@ -8,18 +8,16 @@ class Question < ApplicationRecord
     validates :body, presence: true
 
 
-    after_commit { send_user_notification }
+    after_create { send_user_notification }
 
     private
 
 
     def send_user_notification
-        return if user == venue.user
-        message = "#{self.user.username} just asked a question in #{self.venue.name}"
-        QuestionNotifier.with(
-            message: message,
-            record: self,
-            venue: self.venue
-          ).deliver(venue.user)
+        return if user == self.venue.user
+        
+        NewQuestionNotifier.with(
+            record: self
+        ).deliver(self.venue.user)
     end
 end
