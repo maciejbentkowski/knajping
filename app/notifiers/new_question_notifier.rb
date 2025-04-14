@@ -3,16 +3,39 @@
 # QuestionNotifier.with(record: @post, message: "New post").deliver(User.all)
 
 class NewQuestionNotifier < ApplicationNotifier
+  def question
+    record
+  end
+
+  def date
+    question.created_at.strftime('%d/%m/%Y - %H:%M')
+  end
+
+  def message
+    "Nowe pytanie od #{question&.user&.username} w obiekcie #{venue.name}!"
+  end
+
+  def venue
+    question&.venue
+  end
+
+  def path
+    if venue.present?
+      Rails.application.routes.url_helpers.venue_path(venue)
+    else
+      Rails.application.routes.url_helpers.root_path
+    end
+  end
+
   notification_methods do
     def question
       record
     end
+  
     def date
       question.created_at.strftime('%d/%m/%Y - %H:%M')
     end
-    def venue_id
-      question&.venue_id
-    end
+
     def venue
       question&.venue
     end
