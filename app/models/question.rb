@@ -21,6 +21,6 @@ class Question < ApplicationRecord
         broadcast_prepend_to "notifications_#{venue.user.id}",
                           target: "notifications_#{venue.user.id}",
                           partial: "notifications/notification",
-                          locals: {notification: notification}
+                          locals: { notification: notification }
     end
 end

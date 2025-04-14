@@ -8,7 +8,7 @@ class NewQuestionNotifier < ApplicationNotifier
   end
 
   def date
-    question.created_at.strftime('%d/%m/%Y - %H:%M')
+    question.created_at.strftime("%d/%m/%Y - %H:%M")
   end
 
   def message
@@ -31,9 +31,9 @@ class NewQuestionNotifier < ApplicationNotifier
     def question
       record
     end
-  
+
     def date
-      question.created_at.strftime('%d/%m/%Y - %H:%M')
+      question.created_at.strftime("%d/%m/%Y - %H:%M")
     end
 
     def venue

@@ -23,6 +23,6 @@ class Answer < ApplicationRecord
         broadcast_prepend_to "notifications_#{question.user.id}",
                         target: "notifications_#{question.user.id}",
                         partial: "notifications/notification",
-                        locals: {notification: notification}
+                        locals: { notification: notification }
     end
 end
