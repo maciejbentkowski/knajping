@@ -17,6 +17,7 @@
               Cześć, <%=current_user.username%>
             </div>
             <div class="ml-4 flex items-center md:ml-6">
+              <%=current_user.notifications_quantity%>
               <%= link_to notifications_path do%>
                 <button class="p-1 rounded-full text-indigo-200 hover:text-white focus:outline-none">
                   <i class="fas fa-bell text-xl"></i>

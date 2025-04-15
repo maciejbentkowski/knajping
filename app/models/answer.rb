@@ -9,17 +9,18 @@ class Answer < ApplicationRecord
 
 
 
-    after_commit { send_user_notification }
+    after_create { send_user_notification }
 
     private
 
     def send_user_notification
         return if user == question.user
 
-        notification = AnswerNotifier.with(
+        notification = NewAnswerNotifier.with(
             record: self
           ).deliver(self.question.user)
 
+        notification = question.user.notifications.last    
         broadcast_prepend_to "notifications_#{question.user.id}",
                         target: "notifications_#{question.user.id}",
                         partial: "notifications/notification",

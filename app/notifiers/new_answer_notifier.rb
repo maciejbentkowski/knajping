@@ -1,23 +1,23 @@
 # To deliver this notification:
 #
-# QuestionNotifier.with(record: @post, message: "New post").deliver(User.all)
+# NewAnswerNotifier.with(record: @post, message: "New post").deliver(User.all)
 
-class NewQuestionNotifier < ApplicationNotifier
+class NewAnswerNotifier < ApplicationNotifier
   notification_methods do
-    def question
+    def answer
       record
     end
 
     def date
-      question.created_at.strftime("%d/%m/%Y - %H:%M")
+      answer.created_at.strftime("%d/%m/%Y - %H:%M")
     end
 
     def venue
-      question&.venue
+      answer&.question&.venue
     end
 
     def message
-      "Nowe pytanie od #{question&.user&.username} w obiekcie "
+      "Nowe odpowiedź od #{answer&.user&.username} na twoje pytanie w obiekcie "
     end
 
     def path
@@ -27,10 +27,5 @@ class NewQuestionNotifier < ApplicationNotifier
         Rails.application.routes.url_helpers.root_path
       end
     end
-
-    def read
-      record.notification.read?
-    end
-
   end
 end

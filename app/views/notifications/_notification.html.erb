@@ -4,6 +4,16 @@
       <div class="flex-col">
         <div class="text-xs my-1">
           <%=notification.date%>
+          <% if notification.read?%>
+            <span class="text-green-500">
+              read
+            </span>
+          <% else %>
+            <span class="text-red-500">
+              Unread
+            </span>
+            <%=link_to "mark as read", mark_as_read_notification_path(notification), data: { turbo_method: :patch, mark_as_read: true } %>
+          <% end %>
         </div>
         <div class="text-sm">
           <%=notification.message%>
@@ -25,4 +35,4 @@
       </div>
     </div>
   </div>
-<% end %>
+<%end%>

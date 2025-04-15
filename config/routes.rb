@@ -11,8 +11,13 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile", as: "profile"
 
   # notifications
-  get "notifications", to: "notifications#index", as: "notifications"
-  delete "/notifications/:id", to: "notifications#destroy", as: "notification"
+
+  resources :notifications, only: [:index, :destroy] do
+    member do
+      patch :mark_as_read
+    end
+  end
+
 
   resources :venues do
     resources :reviews, only: [ :new, :create ]
