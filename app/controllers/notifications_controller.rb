@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
     def index
         if current_user
-            @notifications = current_user&.notifications&.includes(event: [ record: :user ]).newest_first
+            @notifications = current_user&.notifications&.includes(event: [ record: [ :user, :venue ] ]).newest_first
         end
     end
 

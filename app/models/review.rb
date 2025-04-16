@@ -18,6 +18,8 @@ class Review < ApplicationRecord
 
     after_commit :update_venue_avg_rating
 
+    after_create :send_user_notification
+
     def rating_dictionary
         rating_dictionary = {}
         rating_dictionary["Wartość"] = self.rating.value_rating
@@ -53,4 +55,20 @@ class Review < ApplicationRecord
     def update_venue_avg_rating
         venue.update_avg_rating
     end
+
+    def send_user_notification
+      return if user == venue.user
+      NewReviewNotifier.with(
+          record: self
+      ).deliver(self.venue.user)
+
+      notification = venue.user.notifications.last
+
+      broadcast_prepend_to "notifications_#{venue.user.id}",
+                        target: "notifications_#{venue.user.id}",
+                        partial: "notifications/notification",
+                        locals: { notification: notification }
+
+      venue.user.update_notifications_quantity
+  end
 end
