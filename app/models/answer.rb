@@ -20,12 +20,12 @@ class Answer < ApplicationRecord
             record: self
           ).deliver(self.question.user)
 
-        notification = question.user.notifications.last    
+        notification = question.user.notifications.last
         broadcast_prepend_to "notifications_#{question.user.id}",
                         target: "notifications_#{question.user.id}",
                         partial: "notifications/notification",
                         locals: { notification: notification }
-                        
+
         question.user.update_notifications_quantity
     end
 end

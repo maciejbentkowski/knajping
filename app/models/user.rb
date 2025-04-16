@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification", counter_cache: :notifications_count
 
-  
+
   def admin_or_moderator?
     %w[admin moderator].include?(role)
   end
@@ -26,14 +26,14 @@ class User < ApplicationRecord
   def notifications_quantity
     read_notifications = self.notifications.where(read_at: nil).count
     seen_notifications = self.notifications.where(seen_at: nil).count
-    [read_notifications, seen_notifications]
+    [ read_notifications, seen_notifications ]
   end
 
   def update_notifications_quantity
     broadcast_update_to "notifications_bell_#{self.id}",
             target: "notification_bell_#{self.id}",
             partial: "layouts/header/notification_bell",
-            locals: {quantity: self.notifications_quantity}
+            locals: { quantity: self.notifications_quantity }
   end
   private
 

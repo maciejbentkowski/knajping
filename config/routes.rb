@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # notifications
 
-  resources :notifications, only: [:index, :destroy] do
+  resources :notifications, only: [ :index, :destroy ] do
     member do
       patch :mark_as_read
     end

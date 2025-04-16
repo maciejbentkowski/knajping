@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-    after_action :mark_notifications_as_seen, only: [:index]
+    after_action :mark_notifications_as_seen, only: [ :index ]
 
     def index
         if current_user
@@ -23,7 +23,7 @@ class NotificationsController < ApplicationController
         render turbo_stream: turbo_stream.replace(
             helpers.dom_id(@notification),
             partial: "notifications/notification",
-            locals: {notification: @notification})
+            locals: { notification: @notification })
     end
 
     private

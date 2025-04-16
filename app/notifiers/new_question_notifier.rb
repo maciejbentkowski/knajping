@@ -31,6 +31,5 @@ class NewQuestionNotifier < ApplicationNotifier
     def read
       record.notification.read?
     end
-
   end
 end

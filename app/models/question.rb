@@ -18,14 +18,14 @@ class Question < ApplicationRecord
         NewQuestionNotifier.with(
             record: self
         ).deliver(self.venue.user)
-        
-        notification = venue.user.notifications.last    
-        
+
+        notification = venue.user.notifications.last
+
         broadcast_prepend_to "notifications_#{venue.user.id}",
                           target: "notifications_#{venue.user.id}",
                           partial: "notifications/notification",
-                          locals: { notification: notification}
-                          
+                          locals: { notification: notification }
+
         venue.user.update_notifications_quantity
     end
 end
