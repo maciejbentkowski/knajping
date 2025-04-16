@@ -27,9 +27,5 @@ class NewQuestionNotifier < ApplicationNotifier
         Rails.application.routes.url_helpers.root_path
       end
     end
-
-    def read
-      record.notification.read?
-    end
   end
 end
