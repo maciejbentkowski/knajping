@@ -1,7 +1,8 @@
 class NotificationsController < ApplicationController
+    after_action :mark_notifications_as_seen, only: [:index]
+
     def index
         if current_user
-            current_user.notifications.mark_as_seen
             @notifications = current_user&.notifications&.includes(event: [ record: :user ]).newest_first
         end
     end
@@ -10,12 +11,24 @@ class NotificationsController < ApplicationController
     def destroy
         @notification = current_user.notifications.find(params[:id])
         @notification.destroy!
-        render turbo_stream: turbo_stream.remove("notification_#{@notification.id}")
+        current_user.update_notifications_quantity
+        render turbo_stream: turbo_stream.remove(helpers.dom_id(@notification))
     end
 
     def mark_as_read
         @notification = current_user.notifications.find(params[:id])
         @notification.mark_as_read
-        render turbo_stream: turbo_stream.replace(helpers.dom_id(@notification))
+        @notification.mark_as_seen
+        current_user.update_notifications_quantity
+        render turbo_stream: turbo_stream.replace(
+            helpers.dom_id(@notification),
+            partial: "notifications/notification",
+            locals: {notification: @notification})
+    end
+
+    private
+
+    def mark_notifications_as_seen
+        current_user.notifications.mark_as_seen
     end
 end

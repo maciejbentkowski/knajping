@@ -16,7 +16,7 @@ class Answer < ApplicationRecord
     def send_user_notification
         return if user == question.user
 
-        notification = NewAnswerNotifier.with(
+        NewAnswerNotifier.with(
             record: self
           ).deliver(self.question.user)
 
@@ -25,5 +25,7 @@ class Answer < ApplicationRecord
                         target: "notifications_#{question.user.id}",
                         partial: "notifications/notification",
                         locals: { notification: notification }
+                        
+        question.user.update_notifications_quantity
     end
 end

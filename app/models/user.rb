@@ -24,9 +24,19 @@ class User < ApplicationRecord
   end
 
   def notifications_quantity
-    self.notifications.where(read_at: nil).count
+    read_notifications = self.notifications.where(read_at: nil).count
+    seen_notifications = self.notifications.where(seen_at: nil).count
+    [read_notifications, seen_notifications]
+  end
+
+  def update_notifications_quantity
+    broadcast_update_to "notifications_bell_#{self.id}",
+            target: "notification_bell_#{self.id}",
+            partial: "layouts/header/notification_bell",
+            locals: {quantity: self.notifications_quantity}
   end
   private
+
 
 
   def set_default_role

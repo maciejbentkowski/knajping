@@ -1,0 +1,6 @@
+<%=quantity[0]%>
+<%= link_to notifications_path, data: {turbo_frame: "_top"} do%>
+  <button class='p-1 rounded-full <%=(quantity[1] > 0) ? 'text-yellow-500/80' : 'text-indigo-200' %> hover:text-white focus:outline-none'>
+    <i class="fas fa-bell text-xl"></i>
+  </button>
+<% end %>
