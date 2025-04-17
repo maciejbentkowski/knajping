@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_17_090615) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_091131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -132,6 +132,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_17_090615) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venue_properties", force: :cascade do |t|
+    t.bigint "venue_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_venue_properties_on_property_id"
+    t.index ["venue_id"], name: "index_venue_properties_on_venue_id"
+  end
+
   create_table "venue_types", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -175,6 +184,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_17_090615) do
   add_foreign_key "ratings", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
+  add_foreign_key "venue_properties", "properties"
+  add_foreign_key "venue_properties", "venues"
   add_foreign_key "venue_venue_types", "venue_types"
   add_foreign_key "venue_venue_types", "venues"
   add_foreign_key "venues", "users"

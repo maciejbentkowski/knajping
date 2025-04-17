@@ -6,6 +6,7 @@ class Venue < ApplicationRecord
     has_many :venue_types, through: :venue_venue_types
     has_many :reviews, dependent: :destroy
     has_many :questions, -> { order(created_at: :desc) }, dependent: :destroy
+    has_many :properties, through: :venue_properties
 
     validates :name, presence: true
     validates :is_activate, inclusion: { in: [ true, false ] }
