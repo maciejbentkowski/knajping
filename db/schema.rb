@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_122144) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_090615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -74,6 +74,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_122144) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
     t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
