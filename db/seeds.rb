@@ -46,17 +46,14 @@ venue_types = [
   { name: "Café", description: "Coffee and light meals" },
   { name: "Bar", description: "Drinks and entertainment" },
   { name: "Breakfast", description: "Morning meals" },
-  { name: "Fast Food", description: "Quick service dining" },
-  { name: "Vegan-friendly", description: "Options for vegans" },
-  { name: "Gluten-free", description: "Gluten-free options" },
-  { name: "Outdoor Seating", description: "Patio or outdoor space" },
-  { name: "Delivery", description: "Offers food delivery" },
-  { name: "Late Night", description: "Open late" },
-  { name: "Family-friendly", description: "Great for families with kids" },
-  { name: "Live Music", description: "Features live music performances" },
   { name: "Wine Bar", description: "Extensive wine selection" },
-  { name: "Sports Bar", description: "Watch sports events" },
-  { name: "Fine Dining", description: "Upscale dining experience" }
+  { name: "Fast Food", description: "Quick service dining" },
+  { name: "Bakery", description: "Fresh-baked goods and pastries" },
+  { name: "Steakhouse", description: "Specializes in premium cuts of beef and meats" },
+  { name: "Seafood", description: "Focus on fish and seafood dishes" },
+  { name: "Buffet", description: "Self-service with variety of all-you-can-eat options" },
+  { name: "Brunch", description: "Late morning to early afternoon dining" },
+  { name: "Pizzeria", description: "Specializes in pizza varieties" }
 ]
 
 venue_types.each do |attrs|
@@ -71,22 +68,13 @@ puts "Creating Venues with Types"
 def assign_random_types(venue)
   all_types = VenueType.all.to_a
 
-  main_type_count = rand(1..3)
-
-  side_type_count = rand(0..5)
+  type_count = rand(1..3)
 
   shuffled_types = all_types.shuffle
 
-  main_types = shuffled_types.take(main_type_count)
-  main_types.each_with_index do |type, index|
+  types = shuffled_types.take(type_count)
+  types.each_with_index do |type, index|
     venue.add_main_type(type, index + 1)
-  end
-
-  remaining_types = shuffled_types - main_types
-
-  side_types = remaining_types.take(side_type_count)
-  side_types.each do |type|
-    venue.add_side_type(type)
   end
 end
 
