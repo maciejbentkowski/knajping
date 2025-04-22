@@ -2,10 +2,10 @@
   <div class=" px-4 py-2 border-1 border-amber-200/60 shadow-md my-3 mx-2  ">
     <div class="my-1 text-sm flex gap-1">
       <div class="h-8 w-8 max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none">
-        <%= avatar(question.user)%>
+        <%= avatar(question&.user)%>
       </div>
       <div class="content-center">
-        <%=question.user.username%> :
+        <%=question&.user&.username%> :
       </div>
     </div>
     <%= turbo_frame_tag "#{dom_id(question)}_content" do %>

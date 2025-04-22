@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification", counter_cache: :notifications_count
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 
 
   def admin_or_moderator?
