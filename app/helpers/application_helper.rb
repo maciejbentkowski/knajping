@@ -2,7 +2,7 @@ module ApplicationHelper
     include Pagy::Frontend
 
     def avatar(current_user)
-        if current_user&.avatar.attached?
+        if current_user&.avatar&.attached?
             image_tag(current_user.avatar.variant(resize_to_fill: [ 300, 300 ]), alt: "User avatar", class: "rounded-full ring-2 ring-white")
         else
             image_tag("default_avatar.png", alt: "User devault avatar", class: "rounded-full")
