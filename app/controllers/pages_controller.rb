@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
     def profile
         @profile = current_user
-        @user_reviews = Review.where(user: @profile.id).includes(:venue, :rating)
-        @user_venues = Venue.where(user: @profile.id)
+        @user_reviews = Review.where(user: @profile).includes(:venue, :rating)
+        @user_venues = Venue.where(user: @profile)
     end
 end
