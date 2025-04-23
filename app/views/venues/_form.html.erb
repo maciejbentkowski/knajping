@@ -1,35 +1,42 @@
 <%= form_with(model: venue) do |form| %>
-  <div class="grid grid-cols-1 gap-y-5">
+  <div class="grid grid-cols-2 gap-y-5">
     <div class="col-span-1">
-      <label class="w-full max-w-xs">
-        <div class="mb-2">
-          <%= form.label :name, "Nazwa lokalu", class:"block text-lg font-medium text-gray-700" %>
-        </div>
-        <%= form.text_field :name, class:"w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
-      </label>
+      <div class="my-2">
+        <label class="w-full max-w-xs">
+          <div>
+            <%= form.label :name, "Nazwa lokalu", class:"block text-lg font-medium text-gray-700" %>
+          </div>
+          <%= form.text_field :name, class:"w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        </label>
+      </div>
+      <div class="my-2">
+        <label class="w-full max-w-xs">
+          <div>
+            <%= form.label :address, "Adres", class:"block text-lg font-medium text-gray-700" %>
+          </div>
+          <%= form.text_field :address, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        </label>
+      </div>
+      <div class="my-2">
+        <label class="w-full max-w-xs">
+          <div>
+            <%= form.label :city, "Miasto", class: "block text-lg font-medium text-gray-700" %>
+          </div>
+          <%= form.text_field :city, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        </label>
+      </div>
+      <div class="my-2">
+        <label class="w-full max-w-xs">
+          <div>
+            <%= form.label :postal_code, "Kod pocztowy", class: "block text-lg font-medium text-gray-700" %>
+          </div>
+          <%= form.text_field :postal_code, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        </label>
+      </div>
     </div>
     <div class="col-span-1">
       <label class="w-full max-w-xs">
-        <div class="mb-2">
-          <%= form.label :address, "Adres", class:"block text-lg font-medium text-gray-700" %>
-        </div>
-        <%= form.text_field :address, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
-      </label>
-    </div>
-    <div class="col-span-1">
-      <label class="w-full max-w-xs">
-        <div class="mb-2">
-          <%= form.label :city, "Miasto", class: "block text-lg font-medium text-gray-700" %>
-        </div>
-        <%= form.text_field :city, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
-      </label>
-    </div>
-    <div class="col-span-1">
-      <label class="w-full max-w-xs">
-        <div class="mb-2">
-          <%= form.label :postal_code, "Kod pocztowy", class: "block text-lg font-medium text-gray-700" %>
-        </div>
-        <%= form.text_field :postal_code, class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+        <%=render "image_preview", form: form, venue: venue%>
       </label>
     </div>
   </div>

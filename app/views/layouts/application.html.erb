@@ -18,7 +18,6 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= Sentry.get_trace_propagation_meta.html_safe %>

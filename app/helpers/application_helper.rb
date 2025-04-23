@@ -11,7 +11,7 @@ module ApplicationHelper
 
     def primary_photo(venue)
         if venue.primary_photo.attached?
-            image_tag(venue.primary_photo, alt: "Venue primary photo", class: "w-full h-full object-cover")
+            image_tag(venue.primary_photo.variant(resize_to_fill: [ 400, 400 ]), alt: "Venue primary photo", class: "h-full object-cover")
         else
 
             image_tag("default_primary_photo.jpg", alt: "Venue default primary photo", class: "w-full h-full object-cover")

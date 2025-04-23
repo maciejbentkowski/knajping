@@ -1,5 +1,5 @@
 <div class="bg-gray-50 min-h-screen">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <div class="max-w-5/6 mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <div class="bg-white shadow-md rounded-lg p-6">
       <%= form_tag venues_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance",
       controller: "search", action: "input->search#submit"} do |f|%>
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+  <div class="max-w-5/6 mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <%= turbo_frame_tag "search-results" do %>
       <div class="block lg:grid lg:grid-cols-12 gap-6">
         <div class="col-span-12 lg:col-span-6">

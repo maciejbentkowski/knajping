@@ -1,0 +1,20 @@
+<div data-controller="primary-photo-preview">
+  <div>
+    <%= form.label :primary_photo, "Zdjęcie główne:", class: "block text-lg font-medium text-gray-700" %>
+  </div>
+  <%= form.file_field :primary_photo,
+            direct_upload: true,
+            data: { primary_photo_preview_target: "input", action: "change->primary-photo-preview#preview"},
+            class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+  <div>
+    <% if venue.primary_photo.attached?%>
+      <div class="max-h-30">
+        <%=image_tag venue.primary_photo, data: {primary_photo_preview_target: "preview"}, class:"max-h-30"%>
+      </div>
+    <%else%>
+      <div class="text-1xl text-center my-4">
+        <%=image_tag "", data: {primary_photo_preview_target: "preview"}%>
+      </div>
+    <% end %>
+  </div>
+</div>
