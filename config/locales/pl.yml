@@ -387,3 +387,13 @@ pl:
       send_instructions: Wkrótce powinieneś otrzymać e-mail z instrukcjami jak odblokować swoje konto.
       send_paranoid_instructions: Jeśli Twoje konto istnieje w naszej bazie, otrzymasz zaraz e-mail z instrukcjami jak odblokować swoje konto.
       unlocked: Twoje konto zostało odblokowane. Zaloguj się, aby kontynuować.
+  unauthorized:
+    read:
+      venue: "Nie możesz wyświetlić tego lokalu"
+    new:
+      review: "Nie masz uprawnień do tworzenia recenzji"
+      venue: "Nie masz uprawnień do tworzenia nowych lokali."
+    edit:
+      venue: "Nie masz uprawnień do edytowania tego lokalu."
+    manage:
+      user: "Nie możesz zarządzać profilem innego użytkownika"
