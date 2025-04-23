@@ -17,6 +17,7 @@ class Venue < ApplicationRecord
     scope :featured_venues, -> { active.where(avg_rating:  4..).includes(:primary_photo_attachment, venue_venue_types: :venue_type).sample(3) }
 
     has_one_attached :primary_photo
+    has_many_attached :photos
 
     geocoded_by :full_address
     after_validation :geocode, if: ->(obj) {
