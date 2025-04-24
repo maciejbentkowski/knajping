@@ -1,6 +1,7 @@
 <%= form_with(model: venue) do |form| %>
-  <div class="grid grid-cols-2 gap-y-5">
+  <div class="grid grid-cols-2 gap-y-5 gap-x-5">
     <div class="col-span-1">
+      <%# Venue name %>
       <div class="my-2">
         <label class="w-full max-w-xs">
           <div>
@@ -9,6 +10,7 @@
           <%= form.text_field :name, class:"w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
         </label>
       </div>
+      <%# Venue name %>
       <div class="my-2">
         <label class="w-full max-w-xs">
           <div>
@@ -35,28 +37,28 @@
       </div>
     </div>
     <div class="col-span-1">
-      <label class="w-full max-w-xs">
+      <label class="">
         <%=render "image_preview", form: form, venue: venue%>
       </label>
     </div>
-  </div>
-  <div data-controller="venue-types" class="mt-8 bg-gray-50 p-6 rounded-lg shadow-sm">
-    <h3 class="text-xl font-semibold text-gray-800 mb-4">Typy lokalu</h3>
-    <p class="text-sm text-gray-600 mb-6">Wybierz typy charakteryzujące Twój lokal. Możesz wybrać do 3 typów głównych oraz dowolną liczbę typów dodatkowych.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% @venue_types.each do |venue_type| %>
-        <div class="bg-white p-4 rounded-md border border-gray-200 hover:border-blue-300 transition-colors">
-          <div class="flex items-center justify-between">
-            <span class="font-medium text-gray-800"><%= venue_type.name %></span>
-            <div class="flex items-center space-x-2">
-              <div class="relative group">
-                <select 
+    <div class="col-span-2">
+      <div data-controller="venue-types" class="block bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Typy lokalu</h3>
+        <p class="text-sm text-gray-600 mb-6">Wybierz typy charakteryzujące Twój lokal. Możesz wybrać do 3 typów głównych oraz dowolną liczbę typów dodatkowych.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% @venue_types.each do |venue_type| %>
+            <div class="bg-white p-4 rounded-md border border-gray-200 hover:border-blue-300 transition-colors">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-800"><%= venue_type.name %></span>
+                <div class="flex items-center space-x-2">
+                  <div class="relative group">
+                    <select 
                   name="venue_types[<%= venue_type.id %>]" 
                   data-venue-types-target="select"
                   data-action="change->venue-types#updateSelections"
-                  class="cursor-pointer bg-gray-100 border border-gray-300 text-gray-700 py-1 px-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                  <option value="">Nie wybrano</option>
-                  <option value="main1" <%= @venue.main_types.first&.id == venue_type.id ? 'selected' : '' %>>Główny #1</option>
+                      class="cursor-pointer bg-gray-100 border border-gray-300 text-gray-700 py-1 px-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                      <option value="">Nie wybrano</option>
+                      <option value="main1" <%= @venue.main_types.first&.id == venue_type.id ? 'selected' : '' %>>Główny #1</option>
                   <option value="main2" <%= @venue.main_types.second&.id == venue_type.id ? 'selected' : '' %>>Główny #2</option>
                   <option value="main3" <%= @venue.main_types.third&.id == venue_type.id ? 'selected' : '' %>>Główny #3</option>
                   <option value="side" <%= @venue.side_types.include?(venue_type) ? 'selected' : '' %>>Dodatkowy</option>
@@ -64,12 +66,13 @@
               </div>
             </div>
           </div>
-          
           <% if venue_type.description.present? %>
             <p class="text-sm text-gray-600 mt-2"><%= venue_type.description %></p>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
-            <% end %>
+            </div>
           </div>
         </div>
         <% if action_name == 'new' %>
