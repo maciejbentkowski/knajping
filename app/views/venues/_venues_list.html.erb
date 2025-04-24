@@ -5,7 +5,7 @@
     <p class="text-gray-600">We couldn't find any venues matching your search criteria. Try adjusting your filters or search terms.</p>
   </div>
 <% else %>
-  <div class="space-y-4">
+  <div class="space-y-6">
     <% venues.each do |venue| %>
       <%= render partial: "venues/venues_list_item", locals: {venue: venue} %>
     <% end %>

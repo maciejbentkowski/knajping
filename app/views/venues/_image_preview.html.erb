@@ -2,15 +2,15 @@
   <div>
     <%= form.label :primary_photo, "Zdjęcie główne:", class: "block text-lg font-medium text-gray-700" %>
   </div>
-  <%= form.file_field :primary_photo,
+  <%= form.file_field :primary_photo, accept: 'image/jpg, image/png',
             direct_upload: true,
             data: { primary_photo_preview_target: "input", action: "change->primary-photo-preview#preview"},
             class: "w-full max-w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
-  <div id="primary_image_container" class=" block w-3/4 h-3/4 max-h-96 border my-4 p-2">
+  <div id="primary_image_container" class=" w-3/4 h-3/4 max-h-96 border my-4 p-2">
     <% if venue.primary_photo.attached? %>
       <%=image_tag venue.primary_photo, data: {primary_photo_preview_target: "preview"}, class:"w-full h-full object-cover"%>
     <% else %>
-      <%=image_tag "", data: {primary_photo_preview_target: "preview"}, class:"object-cover h-full w-full" %>
+      <%=image_tag "", data: {primary_photo_preview_target: "preview"}, class:"h-full w-full object-cover " %>
     <% end %>
   </div>
 </div>
