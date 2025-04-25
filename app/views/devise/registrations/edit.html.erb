@@ -44,7 +44,7 @@
                           class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
         </div>
         <div>
-          <% if @user.avatar.attached?%>
+          <% if @user&.avatar&.attached?%>
             <%=image_tag(@user.avatar.variant(resize_to_fill: [ 200, 200 ]).processed, class: "my-4 rounded-md m-auto drop-shadow-2xl")%>
             <%#=link_to "Usuń", remove_avatar_path(@user, avatar_id: @user.avatar.id), data: {confirm: "Are You sure?", turbo_method: :delete}, class: "mt-2 text-red-700"%>
           <% end %>
