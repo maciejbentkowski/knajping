@@ -18,6 +18,9 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 
+  def self.available_roles
+    [ :reviewer, :owner ]
+  end
 
   def admin_or_moderator?
     %w[admin moderator].include?(role)
