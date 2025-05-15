@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
 
     def index
         @venues = Venue.active.includes(:reviews, :primary_photo_attachment, venue_venue_types: :venue_type).order(updated_at: :desc).search(params)
-
+        @venue_types = VenueType.all
         @pagy, @venues = pagy(@venues, limit: 8)
     end
 
