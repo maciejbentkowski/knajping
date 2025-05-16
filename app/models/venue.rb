@@ -28,7 +28,7 @@ class Venue < ApplicationRecord
 
     def self.search(params)
         params[:query].blank? ? all : where(
-            "lower(name) LIKE ?", "%#{sanitize_sql_like((params[:query]).downcase)}%"
+            "lower(venues.name) LIKE ?", "%#{sanitize_sql_like((params[:query]).downcase)}%"
         )
     end
 

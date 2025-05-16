@@ -4,9 +4,15 @@ import debounce from "debounce";
 // Connects to data-controller="search"
 export default class extends Controller {
   initialize() {
-    this.submit = debounce(this.submit, 400);
+    this.performSubmit = debounce(this.performSubmit, 400);
   }
-  submit(_event) {
+  performSubmit(_event) {
     this.element.requestSubmit();
+  }
+
+  visit(event) {
+    event.preventDefault();
+    const url = event.currentTarget.href;
+    Turbo.visit(url, { frame: "search-results", action: "advance" });
   }
 }
