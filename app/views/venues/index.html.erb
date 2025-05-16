@@ -12,9 +12,9 @@
       <% end %>
       <!-- Filter pills TODO-->
       <div class="mt-4 flex flex-wrap gap-2">
-        <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition">All</button>
+        <%= link_to "All", venues_path(type: nil), class: "px-3 py-1 rounded-full text-sm transition #{params[:type].blank? ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}" %>
         <% @venue_types.each do |type| %>
-          <button class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200 transition"><%=type.name%></button>
+          <%= link_to type.name, venues_path(type: type.name), class: "px-3 py-1 rounded-full text-sm transition #{params[:type] == type.name ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}" %>
         <% end %>
       </div>
     </div>

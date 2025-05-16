@@ -32,6 +32,14 @@ class Venue < ApplicationRecord
         )
     end
 
+    def self.filter_by_type(params)
+        return all if params[:type].blank?
+
+        joins(:venue_types)
+          .where("LOWER(venue_types.name) LIKE ?", "%#{sanitize_sql_like(params[:type].downcase)}%")
+          .distinct
+    end
+
     def activate
         self.is_activate
     end
