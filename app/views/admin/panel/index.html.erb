@@ -10,6 +10,8 @@
             <%= render partial: "admin/panel/venues/venues", locals: { collection: @collection } %>
           <% elsif @value == "venue-types" %>
             <%= render partial: "admin/panel/venue_types/venue_types", locals: { collection: @collection } %>
+          <% elsif @value == "reviews" %>
+            <%= render partial: "admin/panel/reviews/reviews", locals: { collection: @collection } %>
           <% else %>
             <p class="text-gray-500 mt-4">Choose something from the panel.</p>
           <% end %>

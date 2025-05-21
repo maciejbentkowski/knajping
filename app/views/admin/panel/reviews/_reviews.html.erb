@@ -1,0 +1,22 @@
+<%= turbo_frame_tag "admin_panel_collection" do %>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-2 py-1">Uzytkownik</th>
+        <th class="border border-gray-300 px-2 py-1">Lokal</th>
+        <th class="border border-gray-300 px-2 py-1">Śr. ocena</th>
+        <th class="border border-gray-300 px-2 py-1">Ostatnia edycja</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.each do |review| %>
+        <tr id="<%= dom_id(review, "admin") %>">
+          <td class="border border-gray-300 px-2 py-1"><%=link_to review.user.username, profile_path(review.user), data: {turbo: false}%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=review.venue.name%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=review.avg_rating%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=review.updated_at.strftime("%Y-%m-%d %H:%M")%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
