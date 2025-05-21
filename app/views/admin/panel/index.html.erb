@@ -1,0 +1,18 @@
+<div class="min-h-screen">
+  <%= turbo_frame_tag "admin_panel" do %>
+    <div class="my-10 mx-5">
+      <%= turbo_frame_tag "admin_panel_collection" do %>
+        <%= render partial: "panel_menu", locals: { menu_items: @menu_items, value: params[:value] } %>
+        <div class="h-3/4 w-full p-3 border overflow-auto">
+          <% if @value == "venues" %>
+            <%= render partial: "admin/panel/venues/venues", locals: { collection: @collection } %>
+          <% elsif @value == "venue-types" %>
+            <%= render partial: "admin/panel/venue_types/venue_types", locals: { collection: @collection } %>
+          <% else %>
+            <p class="text-gray-500 mt-4">Choose something from the panel.</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

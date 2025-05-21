@@ -53,7 +53,9 @@ class Review < ApplicationRecord
     private
 
     def update_venue_avg_rating
-        venue.update_avg_rating
+      return unless venue && !venue.destroyed? && venue.persisted?
+
+      venue.update_avg_rating
     end
 
     def send_user_notification

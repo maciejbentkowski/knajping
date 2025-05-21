@@ -3,4 +3,8 @@ class VenueType < ApplicationRecord
     has_many :venues, through: :venue_venue_types
 
     validates :name, presence: true, uniqueness: true
+
+    def to_s
+        self.name
+    end
 end

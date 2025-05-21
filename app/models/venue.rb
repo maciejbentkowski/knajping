@@ -25,6 +25,9 @@ class Venue < ApplicationRecord
         obj.postal_code_changed?
     }
 
+    def to_s
+        self.name
+    end
 
     def self.search(params)
         params[:query].blank? ? all : where(

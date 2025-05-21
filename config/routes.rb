@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get "/assets/tailwindcss", to: redirect("/assets/tailwind")
 
+  namespace :admin do
+    resources :panel, only: [ :index ]
+    resources :venues, only: [ :destroy]
+    resources :venue_types, only: [ :destroy]
+  end
 
   devise_for :users, controllers: {
     registrations: "users/registrations"

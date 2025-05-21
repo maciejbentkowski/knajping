@@ -1,0 +1,13 @@
+<div class="" >
+  <nav>
+    <ul class="flex flex-row max-w-fit shadow ">
+      <% menu_items.each do |key, value|%>
+        <%=link_to admin_panel_index_path(value: value), data: { turbo_frame: "admin_panel_collection" }, method: :get do%>
+          <li class="block px-2 py-4 <%= params[:value].to_s == value ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200' %>">
+            <%=key%>
+          </li>
+        <% end %>
+      <%end %>
+    </ul>
+  </nav>
+</div>
