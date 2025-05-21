@@ -1,3 +1,4 @@
+<%# Venue Types Panel %>
 <table class="table-auto">
   <thead>
     <tr>
@@ -15,6 +16,8 @@
         <td class="border border-gray-300 px-2 py-1"><%=venue_type.icon_name%></td>
         <td class="border border-gray-300 px-2 py-1"><%=venue_type.types_count%></td>
         <td class="border border-gray-300 px-2 py-1"><%=venue_type.updated_at.strftime("%Y-%m-%d %H:%M")%></td>
+        <td class="px-4 py-2 place-items-center"><%=link_to "Edytuj", edit_admin_venue_type_path(venue_type), data: {turbo: false},
+                class:" text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md"%></td>
         <td class="px-4 py-2 place-items-center"> <%= button_to "Usuń",  admin_venue_type_path(venue_type),
                 method: :delete,
                 data: { turbo_method: :delete,

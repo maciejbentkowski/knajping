@@ -1,4 +1,4 @@
-class Admin::VenuesController < VenuesController
+class Admin::VenuesController < ApplicationController
     def destroy
         @venue = Venue.find(params[:id])
         @venue.destroy!

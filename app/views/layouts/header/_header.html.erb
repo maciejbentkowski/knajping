@@ -29,17 +29,30 @@
                       <%= avatar(current_user)%>
                     </button>
                     <ul data-dropdown-target="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg p-2 z-50">
-                      <li class="hover:bg-gray-100 rounded-lg">
-                        <%=link_to "Profil", profile_path%>
-                      </li>
-                      <% if (current_user.role == "owner")%>
-                        <li class="hover:bg-gray-100 rounded-lg">
-                          <%=link_to "Dodaj lokal", new_venue_path%>
+                      <% if (current_user.role == "admin")%>
+                        <%=link_to admin_panel_index_path(value: "venues") do%>
+                          <li class="px-2 py-1 hover:bg-gray-100 rounded-lg">
+                            Panel
+                          </li>
+                        <%end%>
+                      <% end %>
+                      <%=link_to profile_path do%>
+                        <li class="px-2 py-1 hover:bg-gray-100 rounded-lg">
+                          Profil
                         </li>
+                      <%end%>
+                      <% if (current_user.role == "owner")%>
+                        <%=link_to new_venue_path do%>
+                          <li class="px-2 py-1 hover:bg-gray-100 rounded-lg">
+                            Dodaj lokal
+                          </li>
+                        <%end%>
                       <% end%>
-                      <li class="hover:bg-gray-100 rounded-lg">
-                        <%=button_to "Wyloguj się", destroy_user_session_path, method: :delete %>
-                      </li>
+                      <%=button_to destroy_user_session_path, method: :delete, class: "w-full text-left" do%>
+                        <li class="px-2 py-1 hover:bg-gray-100 rounded-lg">
+                          Wyloguj się
+                        </li>
+                      <%end%>
                     </ul>
                   </div>
                 </div>

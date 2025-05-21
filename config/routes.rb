@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :panel, only: [ :index ]
     resources :venues, only: [ :destroy]
-    resources :venue_types, only: [ :destroy]
+    resources :venue_types, only: [ :destroy, :edit, :update]
   end
 
   devise_for :users, controllers: {
