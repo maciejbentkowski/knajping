@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "admin_panel_collection" do %>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-2 py-1">Nazwa</th>
+        <th class="border border-gray-300 px-2 py-1">Rola</th>
+        <th class="border border-gray-300 px-2 py-1">Ostatnia edycja</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.each do |user| %>
+        <tr id="<%= dom_id(user, "admin") %>">
+          <td class="border border-gray-300 px-2 py-1"><%=user.username%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=user.role%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=user.updated_at.strftime("%Y-%m-%d %H:%M")%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

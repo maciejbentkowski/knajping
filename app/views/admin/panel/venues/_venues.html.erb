@@ -1,3 +1,31 @@
 <%= turbo_frame_tag "admin_panel_collection" do %>
-  <%= render partial: "admin/panel/venues/panel", locals: { collection: @collection } %>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-2 py-1">Nazwa</th>
+        <th class="border border-gray-300 px-2 py-1">Aktywna?</th>
+        <th class="border border-gray-300 px-2 py-1">Właściciel</th>
+        <th class="border border-gray-300 px-2 py-1">Ostatnia edycja</th>
+        <th class="border border-gray-300 px-2 py-1">Edytuj</th>
+        <th class="border border-gray-300 px-2 py-1">Usuń</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.each do |venue| %>
+        <tr id="<%= dom_id(venue, "admin") %>">
+          <td class="border border-gray-300 px-2 py-1"><%=venue.name%></td>
+          <td class="border border-gray-300 px-2 py-1  <%= venue.activate  ? 'text-green-500' : 'text-red-500' %>"><%=venue.activate%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=venue.user.username%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=venue.updated_at.strftime("%Y-%m-%d %H:%M")%></td>
+          <td class="px-4 py-2 place-items-center"><%=link_to "Edytuj", edit_venue_path(venue), data: {turbo: false},
+                class:" text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md"%></td>
+          <td class="px-4 py-2 place-items-center"> <%= button_to "Usuń",  admin_venue_path(venue),
+                method: :delete,
+                data: { turbo_method: :delete,
+                turbo_confirm: "Are You sure?"},
+                class:" text-xs bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded-md"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
