@@ -1,5 +1,4 @@
 class Admin::VenueTypesController < AdminController
-    
     def new
         @venue_type = VenueType.new()
         render "admin/panel/venue_types/new"
@@ -12,10 +11,9 @@ class Admin::VenueTypesController < AdminController
         if @venue_type.save
             redirect_to admin_panel_index_path(value: "venue_types")
         end
-
     end
 
-    
+
     def edit
         @venue_type = VenueType.find(params[:id])
         render "admin/panel/venue_types/edit"
