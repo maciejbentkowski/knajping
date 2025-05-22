@@ -1,4 +1,4 @@
-class Admin::VenueTypesController < ApplicationController
+class Admin::VenueTypesController < AdminController
 
 
     def edit

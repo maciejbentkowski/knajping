@@ -2,19 +2,30 @@
   <table class="table-auto">
     <thead>
       <tr>
+        <th class="border border-gray-300 px-2 py-1">ID</th>
         <th class="border border-gray-300 px-2 py-1">Uzytkownik</th>
         <th class="border border-gray-300 px-2 py-1">Lokal</th>
         <th class="border border-gray-300 px-2 py-1">Śr. ocena</th>
         <th class="border border-gray-300 px-2 py-1">Ostatnia edycja</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% collection.each do |review| %>
         <tr id="<%= dom_id(review, "admin") %>">
+          <td class="border border-gray-300 px-2 py-1"><%=review.id%></td>
           <td class="border border-gray-300 px-2 py-1"><%=link_to review.user.username, profile_path(review.user), data: {turbo: false}%></td>
-          <td class="border border-gray-300 px-2 py-1"><%=review.venue.name%></td>
+          <td class="border border-gray-300 px-2 py-1"><%=link_to review.venue.name, venue_path(review.venue), data: {turbo: false}%></td>
           <td class="border border-gray-300 px-2 py-1"><%=review.avg_rating%></td>
           <td class="border border-gray-300 px-2 py-1"><%=review.updated_at.strftime("%Y-%m-%d %H:%M")%></td>
+          <td class="px-4 py-2 place-items-center"><%=link_to "Edytuj", edit_admin_review_path(review), data: {turbo: false},
+                class:" text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md"%></td>
+          <td class="px-4 py-2 place-items-center"> <%= button_to "Usuń",  admin_review_path(review),
+                method: :delete,
+                data: { turbo_method: :delete,
+                turbo_confirm: "Are You sure?"},
+                class:" text-xs bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded-md"%></td>
         </tr>
       <% end %>
     </tbody>
