@@ -2,17 +2,19 @@
   <table class="table-auto">
     <thead>
       <tr>
+        <th class="border border-gray-300 px-2 py-1">ID</th>
         <th class="border border-gray-300 px-2 py-1">Nazwa</th>
         <th class="border border-gray-300 px-2 py-1">Aktywna?</th>
         <th class="border border-gray-300 px-2 py-1">Właściciel</th>
         <th class="border border-gray-300 px-2 py-1">Ostatnia edycja</th>
-        <th class="border border-gray-300 px-2 py-1">Edytuj</th>
-        <th class="border border-gray-300 px-2 py-1">Usuń</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% collection.each do |venue| %>
         <tr id="<%= dom_id(venue, "admin") %>">
+          <td class="border border-gray-300 px-2 py-1"><%=venue.id%></td>
           <td class="border border-gray-300 px-2 py-1"><%=venue.name%></td>
           <td class="border border-gray-300 px-2 py-1  <%= venue.activate  ? 'text-green-500' : 'text-red-500' %>"><%=venue.activate%></td>
           <td class="border border-gray-300 px-2 py-1"><%=venue.user.username%></td>
