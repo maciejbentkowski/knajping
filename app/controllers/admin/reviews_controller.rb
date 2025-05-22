@@ -2,11 +2,10 @@ class Admin::ReviewsController < AdminController
     def edit
         @review = Review.find(params[:id])
         render "admin/panel/reviews/edit"
-    end 
+    end
 
 
     def destroy
-
         @review = Review.find(params[:id])
         @review.destroy!
 

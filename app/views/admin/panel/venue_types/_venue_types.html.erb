@@ -1,3 +1,6 @@
+<div class="m-4">
+  <%=link_to "Nowy typ", new_admin_venue_type_path, data:{turbo:false}, class:"px-2 py-1 bg-green-400 rounded-md shadow-md"%>
+</div>
 <%= turbo_frame_tag "admin_panel_collection" do %>
   <%# Venue Types Panel %>
   <table class="table-auto">
