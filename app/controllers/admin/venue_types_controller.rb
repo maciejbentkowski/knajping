@@ -10,7 +10,10 @@ class Admin::VenueTypesController < AdminController
 
         if @venue_type.save
             redirect_to admin_panel_index_path(value: "venue_types")
-        end
+          else
+            Rails.logger.error @venue_type.errors.full_messages
+            render "admin/panel/venue_types/new", status: :unprocessable_entity
+          end
     end
 
 
