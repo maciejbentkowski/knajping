@@ -9,7 +9,7 @@
           <div class="ml-12 md:flex md:space-x-4">
             <%=link_to "Lokale", venues_path, class: "hidden md:flex text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"%>
             <%=link_to "Recenzje", reviews_path, class: "hidden md:flex text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"%>
-            <%=link_to "Kategorie", categories_path, class: "hidden md:flex text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"%>
+            <%=link_to "Kategorie", venue_types_path, class: "hidden md:flex text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"%>
           </div>
         </div>
         <div class="flex items-center">
@@ -70,7 +70,7 @@
                   <div class="py-2 hover:bg-indigo-500">
                     <li><%=link_to "Lokale", venues_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
                     <li><%=link_to "Recenzje", reviews_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
-                    <li><%=link_to "Kategorie", categories_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
+                    <li><%=link_to "Kategorie", venue_types_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>
                   </div>
                   <div class="py-2 hover:bg-indigo-500">
                     <li><%=link_to "Zaloguj się", new_user_session_path, class: "p-2 my-1 hover:bg-gray-200 rounded-lg" %></li>

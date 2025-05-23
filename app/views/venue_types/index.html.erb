@@ -1,4 +1,4 @@
-<div class="grid grid-cols-4 gap-10 max-w-7xl mx-auto py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-4xl mx-10 md:mx-20 lg:mx-auto py-12">
   <%@categories.each do |category|%>
     <%=link_to venues_path(type: category.name)do %>
       <div class="group">
